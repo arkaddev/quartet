@@ -34,11 +34,15 @@ $username = $_SESSION['username'];
     </nav>
     <div class="container">
        
-        
-         <h3>Witaj w panelu administratora, <?php echo $username; ?>!</h3>
-   
        
+    <h2>Tuner</h2>
+        work in progress
+        
+        
+       
+        
         </div>
+      
     <footer>
         &copy; 2024 The Broken Cello Quartet
     </footer>

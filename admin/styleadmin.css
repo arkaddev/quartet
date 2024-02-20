@@ -8,7 +8,7 @@ body {
 header {
     background-color: #333;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 
@@ -21,7 +21,7 @@ nav {
 nav a {
     color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
 }
 
 nav a:hover {
@@ -46,3 +46,10 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+nav .image-link img {
+    max-width: 20px; /* Ustaw maksymalną szerokość obrazka */
+    max-height: 20px; /* Ustaw maksymalną wysokość obrazka */
+    vertical-align: middle; /* Wycentruj obrazek w pionie */
+}
+
