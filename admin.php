@@ -1,4 +1,7 @@
 <?php
+// Ustawienie czasu ważności sesji na 7 dni
+$lifetime = 604800; // 7 dni w sekundach
+session_set_cookie_params($lifetime);
 session_start();
 
 // Sprawdź, czy użytkownik jest zalogowany
@@ -19,10 +22,11 @@ $username = $_SESSION['username'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin panel</title>
     <link rel="stylesheet" href="admin/styleadmin.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>admin panel</h1>
+        <h1>Broken Cello app</h1>
     </header>
      <nav>
        <a href="admin.php" class="image-link"><img src="admin/home.png" alt=""></a>
@@ -35,10 +39,53 @@ $username = $_SESSION['username'];
     <div class="container">
        
         
-         <h3>Witaj w panelu administratora, <?php echo $username; ?>!</h3>
-   
-       
-        </div>
+         <h3>Witaj w Broken Cello app, <?php echo $username; ?>!</h3>
+     
+      <?php
+
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
+    // Otwarcie pliku
+    $file = fopen("admin/data.txt", "r");
+    // Inicjalizacja zmiennej na sumę minut
+    $totalMinutes = 0;
+    // Przejście przez każdą linię w pliku
+    while (!feof($file)) {
+        $line = fgets($file); // Pobranie jednej linii z pliku
+        $data = explode(",", $line); // Podział linii na części po przecinku
+
+        // Sprawdzenie czy imię na danej linii zgadza się z podanym imieniem
+        if ($data[0] === $username) {
+            // Dodanie liczby minut do sumy
+            $totalMinutes += (int)$data[1];
+        }
+    }
+    // Zamknięcie pliku
+    fclose($file);
+  $percent = ($totalMinutes / 60000) * 100;
+  $zaokraglona = round($percent, 1); // Zaokrąglenie do jednego miejsca po przecinku
+    // Wyświetlenie wyniku
+    echo "Jesteś mistrzem w $zaokraglona %";
+}else {
+    echo "Błąd: Nie udało się pobrać nazwy użytkownika.";}
+      
+?>
+
+      
+      
+      
+      
+      
+      
+      
+      <br><br>
+        <img src="admin/office.png" alt="" width="350" height="350">
+     
+    
+      
+
+  
+  </div>
     <footer>
         &copy; 2024 The Broken Cello Quartet
     </footer>
