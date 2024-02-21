@@ -18,14 +18,14 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin panel</title>
+    <title>Broken Cello app</title>
     <link rel="stylesheet" href="admin/styleadmin.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <header>
-        <h1>Broken Cello app</h1>
+        <h1>Statystyki</h1>
     </header>
   <nav>
        <a href="admin.php" class="image-link"><img src="admin/home.png" alt=""></a>
@@ -62,8 +62,7 @@ $username = $_SESSION['username'];
             }
         ?>
 
-       
-      <h3>Statystyki ogólne</h3>
+        <h3 style="text-align: center;">Statystyki ogólne</h3>
       
        <?php
             // Inicjalizacja pustej asocjacyjnej tablicy dla przechowywania sum czasu dla każdego użytkownika
@@ -151,117 +150,106 @@ $username = $_SESSION['username'];
             }
         ?>
       
-  
-      <h3>Wspólny dzienny czas ćwiczeń</h3>
-
+             
+      
+          <h3 style="text-align: center;">Bilans dzienny</h3>
+      
       
       <?php
-// Otwieramy plik danych
+// Inicjalizacja pustej tablicy dla przechowywania sumy czasu dla każdego imienia w każdym miesiącu
+$suma_czasu_miesiac = array();
+
+// Otwórz plik tekstowy do odczytu
 $file = fopen("admin/data.txt", "r");
 
-// Inicjujemy tablicę, która będzie przechowywać sumę liczb oraz datę dla każdego dnia
-$sums_by_day = array();
-
-// Odczytujemy plik linia po linii
-while (!feof($file)) {
-    $line = fgets($file); // Odczytujemy jedną linię z pliku
-    $data = explode(",", $line); // Rozdzielamy dane po przecinkach
-
-    // Sprawdzamy, czy linia zawiera wszystkie elementy: imię, liczba oraz data
-    if (count($data) == 3) {
-        $name = trim($data[0]);
-        $number = intval(trim($data[1]));
-        $date = trim($data[2]);
-
-        // Rozdzielamy datę na części: dzień, miesiąc, rok
-        $date_parts = explode(" ", $date);
-        $day = intval($date_parts[0]);
-
-        // Tworzymy pełną datę
-        $full_date = implode(" ", array_slice($date_parts, 0, 3));
-
-        // Dodajemy liczbę i datę do sumy dla danego dnia
-        if (isset($sums_by_day[$day])) {
-            $sums_by_day[$day]['sum'] += $number;
-            $sums_by_day[$day]['date'] = $full_date;
+// Przejdź przez każdą linię w pliku tekstowym
+while(!feof($file)) {
+    // Odczytaj linię
+    $line = fgets($file);
+    
+    // Podziel linię na części, używając przecinka jako separatora
+    $parts = explode(',', $line);
+    
+    // Jeśli liczba części wynosi 3 (czyli mamy wszystkie oczekiwane dane)
+    if(count($parts) == 3) {
+        // Przypisz dane do zmiennych
+        $imie = $parts[0];
+        $liczba_minut = (int)$parts[1]; // Konwersja na liczbę całkowitą
+        $data = strtotime($parts[2]); // Konwersja daty na znacznik czasu
+        
+        // Pobierz datę z formatu timestamp
+        $data_format = date('Y-m-d', $data);
+        
+        // Dodaj czas do sumy czasu dla danego imienia w danym miesiącu
+        if(isset($suma_czasu_miesiac[$imie][$data_format])) {
+            $suma_czasu_miesiac[$imie][$data_format] += $liczba_minut;
         } else {
-            $sums_by_day[$day] = array('sum' => $number, 'date' => $full_date);
+            $suma_czasu_miesiac[$imie][$data_format] = $liczba_minut;
         }
     }
 }
 
-// Zamykamy plik
+// Zamknij plik
 fclose($file);
+?>
 
-    ?>  
-      
-      
-            <canvas id="myChart2" width="800" height="400"></canvas>
+             <canvas id="myChart5" width="800" height="400"></canvas>
 
 <script>
-    // Dane sumaryczne
-    var sumsByDay = <?php echo json_encode($sums_by_day); ?>;
+  
+    
+  // Dane do wykresu
+  var chartData = <?php echo json_encode($suma_czasu_miesiac); ?>;
 
-    // Przygotowanie danych do wykresu
-    var labels = [];
+  // Przygotuj dane dla Chart.js
+  var chartLabels = Object.keys(chartData[Object.keys(chartData)[0]]);
+  var chartDatasets = [];
+
+  for (var name in chartData) {
     var data = [];
-    for (var day in sumsByDay) {
-        if (sumsByDay.hasOwnProperty(day)) {
-            labels.push("Dzień " + day);
-            data.push(sumsByDay[day]['sum']);
-        }
+    for (var date in chartData[name]) {
+      data.push(chartData[name][date]);
     }
-  
-  
-  
-  
-        // Konwertuj sumę czasu z minut na godziny
-        for (var i = 0; i < data.length; i++) {
-            var hours = data[i] / 60;
-            data[i] = hours.toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
-        }
-  
-  
-  
-  
 
-    // Utworzenie wykresu liniowego
-    var ctx = document.getElementById('myChart2').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Wspólny dzienny czas ćwiczeń',
-                data: data,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+    chartDatasets.push({
+      label: name,
+      data: data,
+      fill: false,
+      borderColor: getRandomColor()
     });
-</script>
-      
-      
-    <?php  
-// Wyświetlamy sumę liczb i datę dla każdego dnia, konwertując sumę minut na godziny i minuty
-foreach ($sums_by_day as $day => $data) {
-    $total_minutes = $data['sum'];
-    $hours = floor($total_minutes / 60);
-    $minutes = $total_minutes % 60;
-    echo "Dzień $day ($data[date]): Suma czasu = $hours godzin $minutes minut <br>";
-}
-?>
-      
-      
+  }
 
+  // Generuj losowy kolor
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Rysuj wykres za pomocą Chart.js
+  var ctx = document.getElementById('myChart5').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: chartLabels,
+      datasets: chartDatasets
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+  </script>
+      
+      
       
       
 </body>
