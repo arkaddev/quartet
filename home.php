@@ -7,7 +7,7 @@ session_start();
 // Sprawdź, czy użytkownik jest zalogowany
 if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
     // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
-    header("Location: index.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -20,27 +20,33 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin panel</title>
+    <title>Broken Cello app</title>
     <link rel="stylesheet" href="admin/styleadmin.css">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <header>
         <h1>Broken Cello app</h1>
     </header>
      <nav>
-       <a href="admin.php" class="image-link"><img src="admin/home.png" alt=""></a>
+       <a href="home.php" class="image-link"><img src="admin/home.png" alt=""></a>
        <a href="metronome.php" class="image-link"><img src="admin/metronome.png" alt=""></a>
        <a href="tuner.php" class="image-link"><img src="admin/tuner.png" alt=""></a>
        <a href="addexercise.php" class="image-link"><img src="admin/add.png" alt=""></a>
        <a href="statistics.php" class="image-link"><img src="admin/chart.png" alt=""></a>
-       <a href="#" class="image-link"><img src="admin/user.png" alt=""></a>
+       <a href="user.php" class="image-link"><img src="admin/user.png" alt=""></a>
     </nav>
     <div class="container">
        
         
          <h3>Witaj w Broken Cello app, <?php echo $username; ?>!</h3>
      
+      
+      
+      
+      
+      
       <?php
 
 if (isset($_SESSION["username"])) {
@@ -62,7 +68,7 @@ if (isset($_SESSION["username"])) {
     }
     // Zamknięcie pliku
     fclose($file);
-  $percent = ($totalMinutes / 60000) * 100;
+  $percent = ($totalMinutes / 600000) * 100;
   $zaokraglona = round($percent, 1); // Zaokrąglenie do jednego miejsca po przecinku
     // Wyświetlenie wyniku
     echo "Jesteś mistrzem w $zaokraglona %";
@@ -73,17 +79,18 @@ if (isset($_SESSION["username"])) {
 
       
       
-      
+      <h3>Co nowego?</h3>
+      <li>22.02.2024 User panel - mozliwosc wylogowania</li>
+      <li>21.02.2024 Nuty aktówki - cant help</li>
+      <li>21.02.2024 Wykres - mój dzienny czas ćwiczeń</li>
       
       
       
       
       <br><br>
-        <img src="admin/office.png" alt="" width="350" height="350">
+       
      
-    
-      
-
+   
   
   </div>
     <footer>

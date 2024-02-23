@@ -7,7 +7,7 @@ session_start();
 // Sprawdź, czy użytkownik jest zalogowany
 if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
     // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
-    header("Location: index.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -29,7 +29,7 @@ $username = $_SESSION['username'];
         <h1>Panel użytkownika</h1>
     </header>
      <nav>
-       <a href="admin.php" class="image-link"><img src="admin/home.png" alt=""></a>
+       <a href="home.php" class="image-link"><img src="admin/home.png" alt=""></a>
        <a href="metronome.php" class="image-link"><img src="admin/metronome.png" alt=""></a>
        <a href="tuner.php" class="image-link"><img src="admin/tuner.png" alt=""></a>
        <a href="addexercise.php" class="image-link"><img src="admin/add.png" alt=""></a>

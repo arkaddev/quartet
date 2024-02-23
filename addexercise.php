@@ -4,7 +4,7 @@ session_start();
 // Sprawdź, czy użytkownik jest zalogowany
 if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
     // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
-    header("Location: index.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -18,20 +18,24 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin panel</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin/styleadmin.css">
 </head>
 <body>
     <header>
-        <h1>admin panel</h1>
+        <h1>Dodaj ćwiczenie</h1>
     </header>
-    <nav>
-      <a href="admin.php">Start</a>
-      <a href="addexercise.php">Dodaj wpis</a>
-      <a href="statistics.php">Statystyki</a>
+ <nav>
+       <a href="home.php" class="image-link"><img src="admin/home.png" alt=""></a>
+       <a href="metronome.php" class="image-link"><img src="admin/metronome.png" alt=""></a>
+       <a href="tuner.php" class="image-link"><img src="admin/tuner.png" alt=""></a>
+       <a href="addexercise.php" class="image-link"><img src="admin/add.png" alt=""></a>
+       <a href="statistics.php" class="image-link"><img src="admin/chart.png" alt=""></a>
+       <a href="user.php" class="image-link"><img src="admin/user.png" alt=""></a>
     </nav>
+  
     <div class="container">
        
-      <body>
+    
     
       
         <p><span style="color: red;">Pamiętaj aby dane wpisywać zgodnie z prawdą, ponieważ tylko wtedy ta strona ma sens. Nie będzie żadnych konsekwencji jeżeli zajmiesz ostatnie miejsce na liście. Pomyśl o tym że prawda zawsze wyjdzie na jaw, ponieważ im wiecej czasu poświęcasz na ćwiczenie, tym większy robisz postęp.</span></p>
@@ -44,14 +48,16 @@ $username = $_SESSION['username'];
         <button type="submit" name="redirect">Wyślij</button>
     </form>
 
+      
+      
         <?php
 if(isset($_POST['numberInput'])) {
     $name =  $username;
     $number = $_POST['numberInput'];
   $date = date('d-m-Y H:i:s'); // Pobranie aktualnej daty w formacie RRRR-MM-DD GG:MM:SS
-  $device = $_SERVER['HTTP_USER_AGENT']; // Pobranie informacji o urządzeniu
+  //$device = $_SERVER['HTTP_USER_AGENT']; // Pobranie informacji o urządzeniu
 
-    $data = "$name, $number, $date, $device\n"; // Format danych: imię, liczba
+    $data = "$name, $number, $date\n"; // Format danych: imię, liczba
 
     $file = fopen('admin/data.txt', 'a'); // Otwarcie pliku w trybie dodawania do istniejącej zawartości
     fwrite($file, $data); // Zapis danych do pliku
@@ -72,6 +78,6 @@ if(isset($_POST['numberInput'])) {
     <footer>
         &copy; 2024 The Broken Cello Quartet
     </footer>
-  
+ 
 </body>
 </html>

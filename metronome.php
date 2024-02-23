@@ -4,7 +4,7 @@ session_start();
 // Sprawdź, czy użytkownik jest zalogowany
 if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
     // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
-    header("Location: index.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -22,20 +22,18 @@ $username = $_SESSION['username'];
 </head>
 <body>
     <header>
-        <h1>admin panel</h1>
+        <h1>Metronom</h1>
     </header>
      <nav>
-       <a href="admin.php" class="image-link"><img src="admin/home.png" alt=""></a>
+       <a href="home.php" class="image-link"><img src="admin/home.png" alt=""></a>
        <a href="metronome.php" class="image-link"><img src="admin/metronome.png" alt=""></a>
        <a href="tuner.php" class="image-link"><img src="admin/tuner.png" alt=""></a>
        <a href="addexercise.php" class="image-link"><img src="admin/add.png" alt=""></a>
        <a href="statistics.php" class="image-link"><img src="admin/chart.png" alt=""></a>
-       <a href="#" class="image-link"><img src="admin/user.png" alt=""></a>
+       <a href="user.php" class="image-link"><img src="admin/user.png" alt=""></a>
     </nav>
     <div class="container">
        
-    
-        <h2>Metronom</h2>
     
          <button onclick="startMetronome(70)">Start (70 BPM)</button>
         <button onclick="startMetronome(75)">Start (75 BPM)</button>
@@ -62,7 +60,7 @@ $username = $_SESSION['username'];
         <br>
         <button disabled onclick="playSound('audio5')">s1</button>
         <button disabled onclick="playSound('audio6')">s1</button>
-        <button disabled onclick="playSound('audio7')">a</button>
+        <button onclick="playSound('audio7')">a</button>
         <button disabled onclick="playSound('audio8')">w</button>
         <button onclick="pauseAudio()">Zatrzymaj</button>
         <br><br>
@@ -87,8 +85,8 @@ $username = $_SESSION['username'];
         <button onclick="pauseAudio()">Zatrzymaj</button>
         <br><br>
         
-        
-    <audio id="audio11" src="admin/altowka wagner.mp3"></audio>
+        <audio id="audio7" src="admin/sounds/altowka cant help.mp3"></audio>
+        <audio id="audio11" src="admin/sounds/altowka wagner.mp3"></audio>
   
 
     <script>

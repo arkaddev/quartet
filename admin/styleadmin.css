@@ -1,3 +1,22 @@
+
+
+@media only screen and (max-width: 600px) {
+  nav .image-link img {
+    max-width: 20px; /* Ustaw maksymalną szerokość obrazka */
+    max-height: 20px; /* Ustaw maksymalną wysokość obrazka */
+    vertical-align: middle; /* Wycentruj obrazek w pionie */
+}
+}
+
+
+@media only screen and (min-width: 601px) {
+  nav .image-link img {
+  
+    vertical-align: middle; /* Wycentruj obrazek w pionie */
+}
+  
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -47,9 +66,5 @@ footer {
     width: 100%;
 }
 
-nav .image-link img {
-    max-width: 20px; /* Ustaw maksymalną szerokość obrazka */
-    max-height: 20px; /* Ustaw maksymalną wysokość obrazka */
-    vertical-align: middle; /* Wycentruj obrazek w pionie */
-}
 
+  

@@ -4,7 +4,7 @@ session_start();
 // Sprawdź, czy użytkownik jest zalogowany
 if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
     // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
-    header("Location: index.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -27,13 +27,13 @@ $username = $_SESSION['username'];
     <header>
         <h1>Statystyki</h1>
     </header>
-  <nav>
-       <a href="admin.php" class="image-link"><img src="admin/home.png" alt=""></a>
+ <nav>
+       <a href="home.php" class="image-link"><img src="admin/home.png" alt=""></a>
        <a href="metronome.php" class="image-link"><img src="admin/metronome.png" alt=""></a>
        <a href="tuner.php" class="image-link"><img src="admin/tuner.png" alt=""></a>
        <a href="addexercise.php" class="image-link"><img src="admin/add.png" alt=""></a>
        <a href="statistics.php" class="image-link"><img src="admin/chart.png" alt=""></a>
-       <a href="#" class="image-link"><img src="admin/user.png" alt=""></a>
+       <a href="user.php" class="image-link"><img src="admin/user.png" alt=""></a>
     </nav>
     <div class="container">
     
@@ -98,9 +98,13 @@ $username = $_SESSION['username'];
             // Licznik miejsca na liście
             $miejsce = 1;
           ?>
-       <canvas id="myChart"></canvas>
+       
+      <canvas id="myChart"></canvas>
 
     <script>
+      
+
+      
         // Dane użytkowników i ich sumy czasu
         var usersData = <?php echo json_encode($sumy_uzytkownikow); ?>;
         var labels = Object.keys(usersData);
@@ -194,17 +198,14 @@ fclose($file);
 ?>
 
              <canvas id="myChart5" width="800" height="400"></canvas>
-
 <script>
-  
-    
   // Dane do wykresu
   var chartData = <?php echo json_encode($suma_czasu_miesiac); ?>;
 
   // Przygotuj dane dla Chart.js
   var chartLabels = Object.keys(chartData[Object.keys(chartData)[0]]);
   var chartDatasets = [];
-
+var colors = ['#0000FF','#808080','#FF0000', '#008000'];
   for (var name in chartData) {
     var data = [];
     for (var date in chartData[name]) {
@@ -215,7 +216,7 @@ fclose($file);
       label: name,
       data: data,
       fill: false,
-      borderColor: getRandomColor()
+      borderColor: colors
     });
   }
 
@@ -228,6 +229,8 @@ fclose($file);
     }
     return color;
   }
+  
+  
 
   // Rysuj wykres za pomocą Chart.js
   var ctx = document.getElementById('myChart5').getContext('2d');
@@ -250,7 +253,75 @@ fclose($file);
   </script>
       
       
+            
+       <h3 style="text-align: center;">Najlepsze wyniki</h3>
+      <h4>Najdłuższe dzienne ćwiczenie: </h4>
       
+      <?php
+// Inicjalizacja pustej tablicy dla przechowywania sumy czasu dla każdego imienia w każdym miesiącu
+$suma_czasu_miesiac = array();
+
+// Otwórz plik tekstowy do odczytu
+$file = fopen("admin/data.txt", "r");
+
+// Przejdź przez każdą linię w pliku tekstowym
+while(!feof($file)) {
+    // Odczytaj linię
+    $line = fgets($file);
+    
+    // Podziel linię na części, używając przecinka jako separatora
+    $parts = explode(',', $line);
+    
+    // Jeśli liczba części wynosi 3 (czyli mamy wszystkie oczekiwane dane)
+    if(count($parts) == 3) {
+        // Przypisz dane do zmiennych
+        $imie = $parts[0];
+        $liczba_minut = (int)$parts[1]; // Konwersja na liczbę całkowitą
+        $data = strtotime($parts[2]); // Konwersja daty na znacznik czasu
+        
+        // Pobierz datę z formatu timestamp
+        $data_format = date('Y-m-d', $data);
+        
+        // Dodaj czas do sumy czasu dla danego imienia w danym miesiącu
+        if(isset($suma_czasu_miesiac[$data_format][$imie])) {
+            $suma_czasu_miesiac[$data_format][$imie] += $liczba_minut;
+        } else {
+            $suma_czasu_miesiac[$data_format][$imie] = $liczba_minut;
+        }
+    }
+}
+
+// Zamknij plik
+fclose($file);
+$czasmax=0;
+$imiemax="";
+      $datamax=0;
+      $minutmax=0;
+// Wyświetl wyniki dla każdej daty
+foreach ($suma_czasu_miesiac as $data => $wyniki) {
+ 
+    // Posortuj wyniki malejąco
+    arsort($wyniki);
+    
+    $miejsce = 1;
+    foreach ($wyniki as $imie => $czas) {
+    
+      if($czas>$czasmax){
+         $czasmax = $czas;
+        $imiemax = $imie;
+        $minutmax= $minut;
+        $datamax = $data;
+         
+      }
       
+        $miejsce++;
+    }
+  
+
+}
+      echo "$imiemax - $czasmax minut, Data: $datamax<br>";
+?>
+     
+    
 </body>
 </html>

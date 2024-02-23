@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -46,3 +47,14 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
+
+ @media only screen and (max-width: 600px) {
+           
+        }
+
+        /* Styl dla komputerów */
+        @media only screen and (min-width: 601px) {
+          
+          }
