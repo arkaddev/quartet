@@ -74,6 +74,7 @@ $username = $_SESSION['username'];
         
      
     <a href="logout.php" class="link"><img src="admin/logout.png" alt="">Wyloguj</a>
+      <a href="archives.php" class="link"><img src="admin/archives.png" alt="">Historia</a>
     <a href="" class="link"><img src="admin/password.png" alt="">Zmień hasło</a>
       
   </div>
