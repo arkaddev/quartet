@@ -23,6 +23,39 @@ $username = $_SESSION['username'];
     <title>admin panel</title>
     <link rel="stylesheet" href="admin/styleadmin.css">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+  
+    .link {margin: auto; /* Automatyczne wyśrodkowanie kontenera */
+      
+        display: block;
+        margin-bottom: 5px;
+        border: 1px solid black; /* węższe obramowanie */
+        padding: 10px; /* mniej miejsca wokół tekstu */
+        width: 300px; /* szerokość hiperłącza */
+        text-decoration: none; /* wyłączenie podkreślenia */
+        color: #333; /* kolor tekstu */
+        font-family: Arial, sans-serif; /* wybrany font */
+        font-size: 18px; /* większa czcionka */
+        line-height: 15px; /* odstęp między liniami */
+       text-align: center; /* tekst na środku */
+      
+     display: flex; /* Używamy flexbox do wyśrodkowania tekstu */
+        justify-content: center; /* Wyśrodkowanie w poziomie */
+        align-items: center; /* Wyśrodkowanie w pionie */
+  
+    }
+    
+    .link img {
+        margin-right: 15px; /* odstęp między obrazkiem a tekstem */
+        width: 20px; /* szerokość obrazka */
+      height: 20px; /* wysokość obrazka */}
+      
+    .link:hover {
+        background-color: #f0f0f0; /* zmiana koloru tła po najechaniu myszką */
+    }
+
+    
+    </style>
 </head>
 <body>
     <header>
@@ -37,13 +70,11 @@ $username = $_SESSION['username'];
        <a href="user.php" class="image-link"><img src="admin/user.png" alt=""></a>
     </nav>
     <div class="container">
-       
+      
         
      
-   
-      <a href="logout.php">Wyloguj się</a>
-      
-      
+    <a href="logout.php" class="link"><img src="admin/logout.png" alt="">Wyloguj</a>
+    <a href="" class="link"><img src="admin/password.png" alt="">Zmień hasło</a>
       
   </div>
     <footer>
