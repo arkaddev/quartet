@@ -1,9 +1,8 @@
 <?php
-// Ustawienie czasu ważności sesji na 7 dni
-$lifetime = 604800; // 7 dni w sekundach
-session_set_cookie_params($lifetime);
+ini_set('session.gc_maxlifetime', 86400);
 session_start();
 
+//session_set_cookie_params(86400);
 // Sprawdź, czy użytkownik jest zalogowany
 if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
     // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
@@ -23,7 +22,12 @@ $username = $_SESSION['username'];
     <title>Broken Cello app</title>
     <link rel="stylesheet" href="admin/styleadmin.css">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<style>
+    #chat-box {
+        height: 300px;
+        overflow-y: scroll;
+    }
+</style>
 </head>
 <body>
     <header>
@@ -39,58 +43,50 @@ $username = $_SESSION['username'];
     </nav>
     <div class="container">
        
-        
-         <h3>Witaj w Broken Cello app, <?php echo $username; ?>!</h3>
-     
-      
-      
-      
-      
-      
-      <?php
+             
+      <div id="chat-box"></div>
+<input type="text" id="message" placeholder="Wpisz wiadomość">
+<button onclick="sendMessage()">Wyślij</button>
 
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
-    // Otwarcie pliku
-    $file = fopen("admin/data.txt", "r");
-    // Inicjalizacja zmiennej na sumę minut
-    $totalMinutes = 0;
-    // Przejście przez każdą linię w pliku
-    while (!feof($file)) {
-        $line = fgets($file); // Pobranie jednej linii z pliku
-        $data = explode(",", $line); // Podział linii na części po przecinku
-
-        // Sprawdzenie czy imię na danej linii zgadza się z podanym imieniem
-        if ($data[0] === $username) {
-            // Dodanie liczby minut do sumy
-            $totalMinutes += (int)$data[1];
-        }
-    }
-    // Zamknięcie pliku
-    fclose($file);
-  $percent = ($totalMinutes / 600000) * 100;
-  $zaokraglona = round($percent, 1); // Zaokrąglenie do jednego miejsca po przecinku
-    // Wyświetlenie wyniku
-    echo "Jesteś mistrzem w $zaokraglona %";
-}else {
-    echo "Błąd: Nie udało się pobrać nazwy użytkownika.";}
-      
-?>
-
-      
-      
-      <h3>Co nowego?</h3>
-      <li>22.02.2024 User panel - mozliwosc wylogowania</li>
-      <li>21.02.2024 Nuty aktówki - cant help</li>
-      <li>21.02.2024 Wykres - mój dzienny czas ćwiczeń</li>
-      
-      
-      
-      
-      <br><br>
-       
-     
+<script>
+function sendMessage() {
    
+  var username = "<?php echo $username; ?>";
+    var message = document.getElementById("message").value;
+    message = username +": "+ message;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("message").value = "";
+        }
+    };
+    xmlhttp.open("GET", "send_message.php?message=" + message, true);
+    xmlhttp.send();
+}
+
+function fetchMessages() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("chat-box").innerHTML = this.responseText;
+        }
+    };
+    xmlhttp.open("GET", "fetch_messages.php", true);
+    xmlhttp.send();
+}
+
+setInterval(fetchMessages, 1000); // Pobierz wiadomości co sekundę
+</script>
+  
+      
+      
+      
+      
+      
+       
+      
+      
+      
   
   </div>
     <footer>
