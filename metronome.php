@@ -1,5 +1,7 @@
 <?php
+ini_set('session.gc_maxlifetime', 86400);
 session_start();
+
 
 // Sprawdź, czy użytkownik jest zalogowany
 if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
@@ -19,6 +21,54 @@ $username = $_SESSION['username'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin panel</title>
     <link rel="stylesheet" href="admin/styleadmin.css">
+  <style>
+        
+        #metronome {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .inputstart{
+            font-size: 16px;
+            padding: 8px 16px;
+          border-radius: 10px;
+        }
+
+        .buttonstart {
+            cursor: pointer;
+         padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+   
+    
+        
+      button:hover {
+            background-color: #0056b3;
+        }
+        
+    .buttontempo {
+            font-size: 10px;
+            padding: 8px 16px;
+            margin: 0 10px;
+      cursor: pointer;
+         padding: 10px 20px;
+           
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+   
+    
+    </style>
 </head>
 <body>
     <header>
@@ -34,86 +84,77 @@ $username = $_SESSION['username'];
     </nav>
     <div class="container">
        
-    
-         <button onclick="startMetronome(70)">Start (70 BPM)</button>
-        <button onclick="startMetronome(75)">Start (75 BPM)</button>
-         <button onclick="startMetronome(80)">Start (80 BPM)</button>
-        <button onclick="startMetronome(85)">Start (85 BPM)</button>
-    <button onclick="startMetronome(100)">Start (100 BPM)</button>
-    <button onclick="stopMetronome()">Stop</button>
-      <br>
-        
-        <h2>Utwory</h2>
-        
-        <button onclick="startMetronome(70)">Start (Nearer My God to thee - 70 BPM)</button>
-        <button onclick="stopMetronome()">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio1')">s1</button>
-        <button disabled onclick="playSound('audio2')">s1</button>
-        <button disabled onclick="playSound('audio3')">a</button>
-        <button disabled onclick="playSound('audio4')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <button onclick="startMetronome(70)">Start (Cant help - 70 BPM)</button>
-        <button onclick="stopMetronome()">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio5')">s1</button>
-        <button disabled onclick="playSound('audio6')">s1</button>
-        <button onclick="playSound('audio7')">a</button>
-        <button disabled onclick="playSound('audio8')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <button onclick="startMetronome(85)">Start (Wedding march Wagner - 85 BPM)</button>
-        <button onclick="stopMetronome()">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio9')">s1</button>
-        <button disabled onclick="playSound('audio10')">s1</button>
-        <button onclick="playSound('audio11')">a</button>
-        <button disabled onclick="playSound('audio12')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <button onclick="startMetronome(105)">Start (Hungarian dance - 105 BPM)</button>
-        <button onclick="stopMetronome()">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio13')">s1</button>
-        <button disabled onclick="playSound('audio14')">s1</button>
-        <button disabled onclick="playSound('audio15')">a</button>
-        <button disabled onclick="playSound('audio16')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <audio id="audio7" src="admin/sounds/altowka cant help.mp3"></audio>
-        <audio id="audio11" src="admin/sounds/altowka wagner.mp3"></audio>
+      
+    <div id="metronome">
+        <input type="number" id="tempoInput" class="inputstart" placeholder="Tempo (BPM)" value="120">
+      <button id="startStopButton" class="buttonstart">Start</button><br><br>
+        <button id="tempo60Button" class="buttontempo">60 BPM</button>
+        <button id="tempo80Button" class="buttontempo">80 BPM</button>
+        <button id="tempo100Button" class="buttontempo">100 BPM</button>
+    </div>
+
+    <script>
+        let timer;
+        let tempo = 120; // Default tempo in BPM (beats per minute)
+        let playing = false;
+        let interval = 60000 / tempo; // Initial interval
+
+        function playClick() {
+            const click = new Audio('admin/t.mp3'); // Provide your click sound file
+            click.play();
+        }
+
+        function startStop() {
+            if (!playing) {
+                playing = true;
+                startMetronome();
+                document.getElementById('startStopButton').innerText = 'Stop';
+            } else {
+                playing = false;
+                clearInterval(timer);
+                document.getElementById('startStopButton').innerText = 'Start';
+            }
+        }
+
+        function startMetronome() {
+            timer = setInterval(playClick, interval);
+        }
+
+        function changeTempo(newTempo) {
+            tempo = newTempo;
+            interval = 60000 / tempo;
+            if (playing) {
+                clearInterval(timer);
+                startMetronome();
+            }
+            document.getElementById('tempoInput').value = tempo; // Update tempo input field
+        }
+
+        document.getElementById('startStopButton').addEventListener('click', startStop);
+        document.getElementById('tempoInput').addEventListener('change', function() {
+            tempo = parseInt(this.value);
+            interval = 60000 / tempo;
+            if (playing) {
+                clearInterval(timer);
+                startMetronome();
+            }
+        });
+
+        document.getElementById('tempo60Button').addEventListener('click', function() {
+            changeTempo(60);
+        });
+
+        document.getElementById('tempo80Button').addEventListener('click', function() {
+            changeTempo(80);
+        });
+
+        document.getElementById('tempo100Button').addEventListener('click', function() {
+            changeTempo(100);
+        });
+    </script>
+      
+      
   
-
-    <script>
-        function playSound(audioId) {
-            var audio = document.getElementById(audioId);
-            audio.play();
-        }
-    </script>
-        
-
-    <script>
-        let intervalID;
-
-        function startMetronome(tempo) {
-            let interval = 60000 / tempo; // Obliczenie czasu interwału w milisekundach
-            intervalID = setInterval(playTick, interval);
-        }
-
-        function stopMetronome() {
-            clearInterval(intervalID);
-        }
-
-        function playTick() {
-            let audio = new Audio('admin/t.mp3'); // Załaduj dźwięk metronomu (plik wav)
-            audio.play();
-        }
-    </script>
         </div>
       
     <footer>
