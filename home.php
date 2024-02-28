@@ -8,142 +8,9 @@
     <title>Broken Cello app</title>
     <link rel="stylesheet" href="css/styleapp.css">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-  
-  @media only screen and (max-width: 600px) {
-  
-.container {
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    max-width: 800px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.container-left {
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 10px;
-  
-  left: 20px; /* Przykładowa odległość od lewej strony */
-  width: 80%; /* Przykładowa szerokość */
-  
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
- 
-}
-
-
-  @media only screen and (min-width: 601px) {
-    
-.container {
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-    
-    .news-container {
-      margin-bottom: 20px;
-      padding: 10px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .news-title {
-      font-weight: bold;
-      color: #333;
-    }
-
-    .news-description {
-      color: #666;
-    }
-    
-    
-
-.container-left {
-  background-color: #fff;
-  padding: 15px;
-  aposition: absolute;
-  position: fixed;
-  left: 20px; /* Przykładowa odległość od lewej strony */
-  atop: 0; /* Ustawia górną krawędź na górze okna przeglądarki */
-  atop: 25%; /* Ustawia górną krawędź na połowie wysokości okna przeglądarki */
-  bottom: 50px;
-  height: 60%; /* Ustawia wysokość na 100% rodzica (czyli okna przeglądarki) */
-  width: 250px; /* Przykładowa szerokość */
-  
-  border-radius: 5px;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
-  font-size: 15px;
-}
-
-.inputbutton {
-      width: 30px;
-    }
- 
- .container-right {
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 20px;
-  position: absolute;
-  right: 20px; /* Przykładowa odległość od lewej strony */
-  aheight: 100%; /* Ustawia wysokość na 100% rodzica (czyli okna przeglądarki) */
-  width: 250px; /* Przykładowa szerokość */
-  
- 
-  afont-size: 15px;
-   
-   
-    
-    max-width: 800px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-    
-    
-    
-        
-.panel-info{
-      color: #fff;
-  }
-    
-    
-  }
-  
-  
-  
-  
-    #chat-box {
-        height: 96%;
-        overflow-y: scroll;
-    }
-  
-  
-  .message {
-  border: 1px solid #ccc;
-  padding: 5px;
-  margin-bottom: 5px;
-  background-color: #FFE4E1;
-     border-radius: 5px;
-    
-}
- 
-  
-  
-  
-  
-</style>
 </head>
 <body>
-    <header>
-        
+    <header> 
     </header>
      <nav>
        <h3 class="panel-info">Home</h3>
@@ -188,9 +55,6 @@
       </p>
     </div>
   </div>
-  
-  
-  
   
 
     <footer>

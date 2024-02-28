@@ -5,7 +5,7 @@ while(!feof($file)) {
   
   // Wyświetl każdą wiadomość w odpowiednim formacie HTML
 
-    echo '<div class="message">' . fgets($file) . '</div>';
+    echo '<div class="chat-message">' . fgets($file) . '</div>';
 
 }
 fclose($file);
