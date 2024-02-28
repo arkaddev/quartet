@@ -101,6 +101,28 @@ $username = $_SESSION['username'];
 .inputbutton {
       width: 30px;
     }
+ 
+ .container-right {
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  position: absolute;
+  right: 20px; /* Przykładowa odległość od lewej strony */
+  aheight: 100%; /* Ustawia wysokość na 100% rodzica (czyli okna przeglądarki) */
+  width: 250px; /* Przykładowa szerokość */
+  
+ 
+  afont-size: 15px;
+   
+   
+    
+    max-width: 800px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+    
+    
+    
         
 .panel-info{
       color: #fff;
@@ -148,6 +170,20 @@ $username = $_SESSION['username'];
        <a href="user.php" class="image-link"><img src="images/menu/user.png" alt=""></a>
     </nav>
   
+   <div class="container-right">
+     <?php include 'php/statistic/master.php'; ?>
+   </div>
+  
+   <div class="container-left">
+   <div id="chat-box"></div>
+   <input type="text" id="message" class="inputchat" placeholder="Wpisz wiadomość">
+   <button onclick="sendMessage()" class="inputbutton">OK</button>
+
+    <script src="js/chat.js"></script>
+   </div>
+  
+     
+    
     <div class="container">   
 
     <div class="news-container">
@@ -165,54 +201,10 @@ $username = $_SESSION['username'];
       
       </p>
     </div>
-    
-    
-    <h3>Witaj w Broken Cello app, <?php echo $username; ?>!</h3>
-     
-      
-      
-      <?php
-
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
-    // Otwarcie pliku
-    $file = fopen("data/data.txt", "r");
-    // Inicjalizacja zmiennej na sumę minut
-    $totalMinutes = 0;
-    // Przejście przez każdą linię w pliku
-    while (!feof($file)) {
-        $line = fgets($file); // Pobranie jednej linii z pliku
-        $data = explode(",", $line); // Podział linii na części po przecinku
-
-        // Sprawdzenie czy imię na danej linii zgadza się z podanym imieniem
-        if ($data[0] === $username) {
-            // Dodanie liczby minut do sumy
-            $totalMinutes += (int)$data[1];
-        }
-    }
-    // Zamknięcie pliku
-    fclose($file);
-  $percent = ($totalMinutes / (10000 * 60)) * 100;
-  $zaokraglona = round($percent, 1); // Zaokrąglenie do jednego miejsca po przecinku
-    // Wyświetlenie wyniku
-    echo "Jesteś mistrzem w $zaokraglona %";
-}else {
-    echo "Błąd: Nie udało się pobrać nazwy użytkownika.";}
-      
-?>
   </div>
   
   
   
-  
-  
-  <div class="container-left">
-    <div id="chat-box"></div>
-    <input type="text" id="message" class="inputchat" placeholder="Wpisz wiadomość">
-    <button onclick="sendMessage()" class="inputbutton">OK</button>
-
-    <script src="js/chat.js"></script>
-  </div>
   
 
     <footer>
