@@ -1,77 +1,122 @@
-<?php
-session_start();
+<?php include 'php/session.php'; ?>
 
-// Sprawdź, czy użytkownik jest zalogowany
-if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
-    // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
-    header("Location: login.php");
-    exit();
-}
-
-// Odczytaj nazwę użytkownika z sesji
-$username = $_SESSION['username'];
-
-?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin panel</title>
-    <link rel="stylesheet" href="admin/styleadmin.css">
+    <link rel="stylesheet" href="css/styleapp.css?v=1.0">
+  <style>
+.test {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+    .label {
+        padding: 25px; /* mniej miejsca wokół tekstu */
+      font-size: 18px; /* większa czcionka */
+      
+     
+       
+    }
+    
+    .input {
+    margin: auto; /* Automatyczne wyśrodkowanie kontenera */  
+      
+        margin-bottom: 2px;
+        padding: 10px; /* mniej miejsca wokół tekstu */
+        width: 160px; /* szerokość hiperłącza */
+        font-size: 18px; /* większa czcionka */
+        line-height: 15px; /* odstęp między liniami */
+      
+      
+    
+        justify-content: center; /* Wyśrodkowanie w poziomie */
+        align-items: center; /* Wyśrodkowanie w pionie */
+  
+    }
+    .button {margin: auto; /* Automatyczne wyśrodkowanie kontenera */
+      
+        display: block;
+        margin-bottom: 5px;
+        border: 1px solid black; /* węższe obramowanie */
+        padding: 10px; /* mniej miejsca wokół tekstu */
+        width: 300px; /* szerokość hiperłącza */
+        text-decoration: none; /* wyłączenie podkreślenia */
+        color: #333; /* kolor tekstu */
+        font-family: Arial, sans-serif; /* wybrany font */
+        font-size: 18px; /* większa czcionka */
+        line-height: 15px; /* odstęp między liniami */
+       text-align: center; /* tekst na środku */
+      
+     display: flex; /* Używamy flexbox do wyśrodkowania tekstu */
+        justify-content: center; /* Wyśrodkowanie w poziomie */
+        align-items: center; /* Wyśrodkowanie w pionie */
+  
+    }
+    
+    .button img {
+        margin-right: 15px; /* odstęp między obrazkiem a tekstem */
+        width: 20px; /* szerokość obrazka */
+      height: 20px; /* wysokość obrazka */}
+      
+    .button:hover {
+        background-color: #f0f0f0; /* zmiana koloru tła po najechaniu myszką */
+    }
+
+    
+    </style>
 </head>
 <body>
     <header>
-        <h1>Dodaj ćwiczenie</h1>
     </header>
- <nav>
-       <a href="home.php" class="image-link"><img src="admin/home.png" alt=""></a>
-       <a href="metronome.php" class="image-link"><img src="admin/metronome.png" alt=""></a>
-       <a href="tuner.php" class="image-link"><img src="admin/tuner.png" alt=""></a>
-       <a href="addexercise.php" class="image-link"><img src="admin/add.png" alt=""></a>
-       <a href="statistics.php" class="image-link"><img src="admin/chart.png" alt=""></a>
-       <a href="user.php" class="image-link"><img src="admin/user.png" alt=""></a>
+<nav>
+         <h3 class="panel-info">Dodaj ćwiczenie</h3>
+
+       <a href="home.php" class="image-link"><img src="admin/icons/home.png" alt=""></a>
+       <a href="metronome.php" class="image-link"><img src="admin/icons/metronome.png" alt=""></a>
+       <a href="tuner.php" class="image-link"><img src="admin/icons/tuner.png" alt=""></a>
+       <a href="addexercise.php" class="image-link"><img src="admin/icons/add.png" alt=""></a>
+       <a href="statistics.php" class="image-link"><img src="admin/icons/chart.png" alt=""></a>
+       <a href="user.php" class="image-link"><img src="admin/icons/user.png" alt=""></a>
     </nav>
   
+  <div class="container-right">
+     <?php include 'php/statistic/master.php'; ?>
+     <br><br>
+     <?php include 'php/statistic/points.php'; ?>
+   </div>
+  
+   <div class="container-left">
+   <div id="chat-box"></div>
+   <input type="text" id="message" class="inputchat" placeholder="Wpisz wiadomość">
+   <button onclick="sendMessage()" class="inputbutton">OK</button>
+
+    <script src="js/chat.js"></script>
+   </div>
+  
+   <div class="container-left">
+   <div id="chat-box"></div>
+   <input type="text" id="message" class="inputchat" placeholder="Wpisz wiadomość">
+   <button onclick="sendMessage()" class="inputbutton">OK</button>
+
+    <script src="js/chat.js"></script>
+   </div>
     <div class="container">
        
     
+  
     
-      
-        <p><span style="color: red;">Pamiętaj aby dane wpisywać zgodnie z prawdą, ponieważ tylko wtedy ta strona ma sens. Nie będzie żadnych konsekwencji jeżeli zajmiesz ostatnie miejsce na liście. Pomyśl o tym że prawda zawsze wyjdzie na jaw, ponieważ im wiecej czasu poświęcasz na ćwiczenie, tym większy robisz postęp.</span></p>
-
-   
-      <h2>Zapis czasu ćwiczeń</h2>
-    <form action="" method="post">
-      <label for="numberInput">Czas w min:</label>
-        <input type="text" id="numberInput" name="numberInput" required><br><br>
-        <button type="submit" name="redirect">Wyślij</button>
+    <form action="" method="post" class="test">
+      <label class="label" for="numberInput">Czas (min):</label>
+        <input class="input" type="text" id="numberInput" name="numberInput" required><br>
+        <button class="button" type="submit" name="redirect"><img src="admin/logout.png" alt="">Wyślij</button>
     </form>
 
       
+      <?php include 'php/addnewexercise.php'; ?>
       
-        <?php
-if(isset($_POST['numberInput'])) {
-    $name =  $username;
-    $number = $_POST['numberInput'];
-  $date = date('d-m-Y H:i:s'); // Pobranie aktualnej daty w formacie RRRR-MM-DD GG:MM:SS
-  //$device = $_SERVER['HTTP_USER_AGENT']; // Pobranie informacji o urządzeniu
-
-    $data = "$name, $number, $date\n"; // Format danych: imię, liczba
-
-    $file = fopen('admin/data.txt', 'a'); // Otwarcie pliku w trybie dodawania do istniejącej zawartości
-    fwrite($file, $data); // Zapis danych do pliku
-    fclose($file); // Zamknięcie pliku
-
-    echo "Dane zostały zapisane pomyślnie!";
-}
-        
-         if(isset($_POST['redirect'])) {
-        // Wykonaj przekierowanie na inną stronę
-        header("Location: statistics.php");
-        exit(); // Upewnij się, że żadne inne treści nie zostaną wysłane po nagłówku przekierowania
-    }
-?>
 
         </div>
       
