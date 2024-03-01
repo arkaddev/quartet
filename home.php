@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Broken Cello app</title>
-    <link rel="stylesheet" href="css/styleapp.css">
+    <link rel="stylesheet" href="css/styleapp.css?v=1.0">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -25,6 +25,8 @@
   
    <div class="container-right">
      <?php include 'php/statistic/master.php'; ?>
+     <br><br>
+     <?php include 'php/statistic/points_general.php'; ?>
    </div>
   
    <div class="container-left">
@@ -37,13 +39,20 @@
   
      
     
-    <div class="container">   
-
+    <div class="container">  
+      
+      
+   
+      
+      
+      
     <div class="news-container">
       <h2 class="news-title">Co nowego?</h2>
       <p class="news-description">
       
-       <li>27.02.2024 Poprawiony uklad graficzny dla czatu</li>
+      <li>29.02.2024 Stoper przy zapisywaniu cwiczen</li>
+      <li>28.02.2024 Dodana punktacja</li>
+      <li>27.02.2024 Poprawiony uklad graficzny dla czatu</li>
       <li>25.02.2024 Czat</li>
       <li>25.02.2024 Zakladka historia w panelu uzytkownika</li>
       <li>25.02.2024 Nowy formularz logowania oraz poprawione menu usera</li>
