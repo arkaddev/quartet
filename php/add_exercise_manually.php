@@ -1,4 +1,4 @@
- <?php
+   <?php
 if(isset($_POST['numberInput'])) {
     $name =  $username;
     $number = $_POST['numberInput'];

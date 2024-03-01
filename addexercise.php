@@ -7,69 +7,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin panel</title>
     <link rel="stylesheet" href="css/styleapp.css?v=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
-.test {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-    .label {
-        padding: 25px; /* mniej miejsca wokół tekstu */
-      font-size: 18px; /* większa czcionka */
-      
-     
-       
-    }
+
     
-    .input {
-    margin: auto; /* Automatyczne wyśrodkowanie kontenera */  
-      
-        margin-bottom: 2px;
-        padding: 10px; /* mniej miejsca wokół tekstu */
+    
+    .input-manually {
+ 
+        margin: 5px;
+        padding: 10px 20px; /* mniej miejsca wokół tekstu */
         width: 160px; /* szerokość hiperłącza */
-        font-size: 18px; /* większa czcionka */
-        line-height: 15px; /* odstęp między liniami */
-      
-      
-    
-        justify-content: center; /* Wyśrodkowanie w poziomie */
-        align-items: center; /* Wyśrodkowanie w pionie */
+        font-size: 16px; /* większa czcionka */
+        
   
     }
-    .button {margin: auto; /* Automatyczne wyśrodkowanie kontenera */
-      
-        display: block;
-        margin-bottom: 5px;
-        border: 1px solid black; /* węższe obramowanie */
-        padding: 10px; /* mniej miejsca wokół tekstu */
-        width: 300px; /* szerokość hiperłącza */
-        text-decoration: none; /* wyłączenie podkreślenia */
-        color: #333; /* kolor tekstu */
-        font-family: Arial, sans-serif; /* wybrany font */
-        font-size: 18px; /* większa czcionka */
-        line-height: 15px; /* odstęp między liniami */
-       text-align: center; /* tekst na środku */
-      
-     display: flex; /* Używamy flexbox do wyśrodkowania tekstu */
-        justify-content: center; /* Wyśrodkowanie w poziomie */
-        align-items: center; /* Wyśrodkowanie w pionie */
-  
+    .button-manually {
+     font-size: 16px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #0078A8;
+    color: white;
+    border: none;
+    cursor: pointer;
     }
     
-    .button img {
-        margin-right: 15px; /* odstęp między obrazkiem a tekstem */
-        width: 20px; /* szerokość obrazka */
-      height: 20px; /* wysokość obrazka */}
-      
-    .button:hover {
-        background-color: #f0f0f0; /* zmiana koloru tła po najechaniu myszką */
+    
+
+    
+    .container{
+      text-align: center;
     }
+    
+    
+    
+
+#timer {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.button-timer {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.button-timer:hover {
+    background-color: #45a049;
+}
+
+#saveButton {
+    background-color: #008CBA;
+}
+
+#saveButton:hover {
+    background-color: #0078A8;
+}
 
     
     </style>
 </head>
 <body>
-    <header>
+   <header> 
     </header>
 <nav>
          <h3 class="panel-info">Dodaj ćwiczenie</h3>
@@ -85,7 +88,7 @@
   <div class="container-right">
      <?php include 'php/statistic/master.php'; ?>
      <br><br>
-     <?php include 'php/statistic/points.php'; ?>
+     <?php include 'php/statistic/points_general.php'; ?>
    </div>
   
    <div class="container-left">
@@ -96,27 +99,32 @@
     <script src="js/chat.js"></script>
    </div>
   
-   <div class="container-left">
-   <div id="chat-box"></div>
-   <input type="text" id="message" class="inputchat" placeholder="Wpisz wiadomość">
-   <button onclick="sendMessage()" class="inputbutton">OK</button>
-
-    <script src="js/chat.js"></script>
-   </div>
+  
+  
+  
+  
     <div class="container">
        
-    
-  
-    
-    <form action="" method="post" class="test">
-      <label class="label" for="numberInput">Czas (min):</label>
-        <input class="input" type="text" id="numberInput" name="numberInput" required><br>
-        <button class="button" type="submit" name="redirect"><img src="admin/logout.png" alt="">Wyślij</button>
+    <h1>Stoper</h1>
+    <h5>nie zamykaj strony w trakcie ćwiczenia</h5>
+<p id="timer">00:00:00</p>
+<button id="startStopButton" class="button-timer">Start/Stop</button>
+<button id="resetButton" class="button-timer">Reset</button>
+<button id="saveButton" class="button-timer" disabled>Zapisz</button>
+<script src="js/add_exercise_timer.js"></script>
+      
+<br><br><br><br><br>
+      <h1>Wpis manualny</h1>
+      
+    <form action="" method="post">
+      <input class="input-manually" type="text" id="numberInput" name="numberInput" placeholder="Czas (min):" required>
+      <button class="button-manually" type="submit" name="redirect">Zapisz</button>
     </form>
 
       
-      <?php include 'php/addnewexercise.php'; ?>
+      <?php include 'php/add_exercise_manually.php'; ?>
       
+     
 
         </div>
       
