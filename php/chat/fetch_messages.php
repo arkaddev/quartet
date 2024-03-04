@@ -1,13 +1,14 @@
 <?php
 $file = fopen("messages.txt", "r");
 while(!feof($file)) {
-   // echo fgets($file) . "<br>";
+
+    //echo '<div class="chat-message">' . fgets($file) . '</div>';
   
-  // Wyświetl każdą wiadomość w odpowiednim formacie HTML
-
-    echo '<div class="chat-message">' . fgets($file) . '</div>';
-
+  $line = fgets($file);
+    if ($line !== false && $line !== '') {
+        echo '<div class="chat-message">' . $line . '</div>';
+    }
+  
 }
 fclose($file);
 ?>
-
