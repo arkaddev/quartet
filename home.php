@@ -10,13 +10,173 @@
     <link rel="stylesheet" href="">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+   @media only screen and (max-width: 600px) {
+     
+   body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0; 
+  }
+
+  .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+  
+  }
+  .menu a{
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        padding: 5px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none; /* podkreslenie */
+  }
+  
+  .menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu .image-link img {
+    max-width: 20px; /* Ustaw maksymalną szerokość obrazka */
+    max-height: 20px; /* Ustaw maksymalną wysokość obrazka */
+    filter: invert(100%);
+  }
+  
+  .right-item {
+        position: relative;
+    }
+  
+  
+  .right-item .submenu {
+        adisplay: none;/* otwarcie menu po najechaniu myszka */
+        position: absolute;
+        atop: 100%;
+        right: 5%;
+        abackground-color: #333;
+        padding: 10px;
+    }
+
+    
+    .submenu{
+        adisplay: block;/* otwarcie menu po najechaniu myszka */
+        display: none;
+        color: #fff;
+        background-color: #444;
+        text-decoration: none;
+        padding: 5px 0;
+        transition: background-color 0.3s ease;
+      
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 4px;
+  }
+ 
+        .submenu a {
+          display: block;
+          padding: 15px 70px;
+  }
+  
+  .submenu a:hover {
+        abackground-color: rgba(255, 255, 255, 0.1);
+    }
+
+a.active{
+  text-decoration: underline;
+  color: #333; /* Kolor tekstu dla aktywnego linku */
+  border-bottom: 2px solid yellow; /* Podkreślenie w kolorze żółtym */
+ 
+  border-radius: 20px;
+
+  }
+    
+    
+
+  
+  
+    
+  .left-container{
+     display: none;
+}
+  
+  
+  
+  .middle-container {
+    aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    margin-left: auto; /* Ustawia drugi kontener na środku */
+    margin-right: auto;
+    margin-top: 20px;
+    
+    flex-grow: 1; /* Środkowy kontener zajmie całą dostępną przestrzeń */
+           
+    
+    
+    padding: 20px;
+    
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+}
+  
+   .right-container {
+    display: none;
+}
+  
+ 
+    
+    .news {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+  
+    
+  #chat-box{
+  
+   top: 0;
+    height: 250px; /* Wysokość */
+background-color: #f9f9f9;
+        color: black;
+        padding: 20px;
+  overflow: auto;
+    margin: 10px;
+   border: 1px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    border-radius: 5px;
+  }
+  
+  
+  
+     
+     
+    }
+
+@media only screen and (min-width: 601px) {
+
    body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-    
-        min-height: 100vh; /* Minimalna wysokość strony, aby stopka zawsze była na dole */
-        position: relative; /* Ustawia strony jako referencję dla absolutnie pozycjonowanej stopki */
+   
+     
+        amin-height: 100vh; /* Minimalna wysokość strony, aby stopka zawsze była na dole */
+        aposition: relative; /* Ustawia strony jako referencję dla absolutnie pozycjonowanej stopki */
    
    
   }
@@ -98,7 +258,7 @@
 a.active{
   text-decoration: underline;
   color: #333; /* Kolor tekstu dla aktywnego linku */
-  border-bottom: 2px solid yellow; /* Podkreślenie w kolorze żółtym */
+  border-bottom: 2px solid silver; /* Podkreślenie w kolorze żółtym */
  
   border-radius: 20px;
 
@@ -123,6 +283,7 @@ a.active{
     order: -1; /* Ustawia pierwszy kontener na lewo */
     aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
     width: 25%; /* Przykładowa szerokość */
+    
     margin-right: 15px;
     margin-top: 20px;
     
@@ -146,17 +307,23 @@ a.active{
     margin-right: auto;
     margin-top: 20px;
     
+    flex-grow: 1; /* Środkowy kontener zajmie całą dostępną przestrzeń */
+           
+    
+    
     padding: 20px;
     
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
 }
   
    .right-container {
      aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
      order: 1; /* Ustawia trzeci kontener na prawo */
      width: 25%; /* Przykładowa szerokość */
+     
      margin-left: 15px;
      margin-top: 20px;
      
@@ -192,56 +359,72 @@ a.active{
     color: #fff;
     text-align: center;
     padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 98%;
-    bottom: 0;
-    
-        line-height: 50px; /* Wyrównuje wysokość tekstu do wysokości stopki */
-}
-  
-    
-  #chat-box{
     position: fixed;
     bottom: 0;
-    width: 250px; /* Szerokość */
-    height: 350px; /* Wysokość */
-background-color: #f9f9f9;
-        color: black;
-        padding: 20px;
-  overflow: auto;
-    margin-left: 10px;
-   border: 1px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
-    border-radius: 5px;
-  }
+    width: 100%;
+}
   
   
-   .achat-message {
-  border: 1px solid #ccc;
-  apadding: 5px;
-  margin-bottom: 5px;
-  background-color: #FFFFE0;
+  .chat-container {
+    position: fixed;
+    bottom: 39px ;
+    
+    width: 300px; /* Szerokość */
+    height: 450px; /* Wysokość */
+    margin-left: 20px;
+    
+    aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
     border-radius: 10px;
-     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-     aborder-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  
+    background-color: #f9f9f9;
+    padding: 10px;
    
-
     
 }
   
-  .achat{
+  #chat-box {
     position: absolute;
-    bottom: 0;
+    margin-top: 15px;
+    height: 85%;
+     width: 300px; /* Szerokość */
+    overflow: auto;
+    abackground-color: #FFE4E1;   
+    }
+  
+  .chat-input-button{
+    position: absolute;
+    bottom: 10px;
   }
+    
+  .chat-message {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  background-color: #728FCE;
+  border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   
-   
-  
+
+}
+    #minimalization {
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        cursor: pointer;
+    }
+}    
+    
   
   </style>
 </head>
 <body>
     <header> 
     </header>
+   
+  
+  
+  
     <div class="menu">
     <div class="left-item">
         <a href="home.php" class="image-link active"><img src="images/menu/home.png" alt=""></a>
@@ -251,7 +434,7 @@ background-color: #f9f9f9;
      
        <a href="metronome.php" class="image-link"><img src="images/menu/metronome.png" alt=""></a>
        <a href="tuner.php" class="image-link"><img src="images/menu/tuner.png" alt=""></a>
-      <a href="#" class="image-link"><img src="images/menu/songs.png" alt=""></a>
+      <a href="songs.php" class="image-link"><img src="images/menu/songs.png" alt=""></a>
        <a href="addexercise.php" class="image-link"><img src="images/menu/add.png" alt=""></a>
        <a href="statistics.php" class="image-link"><img src="images/menu/chart.png" alt=""></a>
        
@@ -286,14 +469,33 @@ background-color: #f9f9f9;
   
   
   
-  
-   <div id="chat-box">
-   <div class="chat">
-    <input type="text" id="message" class="input-chat" placeholder="Wpisz wiadomość">
-   <button onclick="sendMessage()" class="button-chat">OK</button>
-  </div></div>
+  <div id="window" class="chat-container">
+    <div id="minimalization">&#x2014;</div>
+    <div id="chat-box"></div>
+      
+      <div class="chat-input-button">
+        <input type="text" id="message" class="chat-input" placeholder="Wpisz wiadomość">
+        <button onclick="sendMessage()" class="chat-button">OK</button>
+      </div>
+    
+  </div>
   
   <script src="js/chat.js"></script>
+  
+  <script>
+    // Pobranie przycisku minimalizacji
+    var minimalizationButton = document.getElementById('minimalization');
+
+    // Pobranie zawartości okna
+    var windowContent = document.getElementById('window');
+
+    // Dodanie obsługi zdarzenia kliknięcia na przycisk minimalizacji
+    minimalizationButton.addEventListener('click', function() {
+        // Minimalizacja okna
+        windowContent.style.display = windowContent.style.display === 'none' ? 'block' : 'none';
+    });
+</script>
+  
   
   <div class="main-container">
   
@@ -328,6 +530,10 @@ background-color: #f9f9f9;
       
       
      
+      
+    
+      
+      
       
       
     </div>
