@@ -1,18 +1,4 @@
-<?php
-ini_set('session.gc_maxlifetime', 86400);
-session_start();
-
-
-// Sprawdź, czy użytkownik jest zalogowany
-if(!isset($_SESSION['zalogowany']) || $_SESSION['zalogowany'] !== true) {
-    // Jeśli użytkownik nie jest zalogowany, przekieruj go do strony logowania
-    header("Location: login.php");
-    exit();
-}
-
-// Odczytaj nazwę użytkownika z sesji
-$username = $_SESSION['username'];
-?>
+<?php include 'php/session.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -20,7 +6,7 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin panel</title>
-    <link rel="stylesheet" href="admin/styleadmin.css">
+   <link rel="stylesheet" href="css/styleapp.css?v=1.23">
   <style>
         
         #metronome {
@@ -68,23 +54,91 @@ $username = $_SESSION['username'];
         }
    
     
+    
+    
+    
+
+    
+    
+    
     </style>
 </head>
 <body>
-    <header>
-        <h1>Metronom</h1>
-    </header>
-     <nav>
-       <a href="home.php" class="image-link"><img src="admin/home.png" alt=""></a>
-       <a href="metronome.php" class="image-link"><img src="admin/metronome.png" alt=""></a>
-       <a href="tuner.php" class="image-link"><img src="admin/tuner.png" alt=""></a>
-       <a href="addexercise.php" class="image-link"><img src="admin/add.png" alt=""></a>
-       <a href="statistics.php" class="image-link"><img src="admin/chart.png" alt=""></a>
-       <a href="user.php" class="image-link"><img src="admin/user.png" alt=""></a>
-    </nav>
-    <div class="container">
+  <div class="menu">
+    <div class="left-item">
+        <a href="home.php" class="image-link"><img src="images/menu/home.png" alt=""></a>
+        
+    </div>
+    <div class="middle-item">
+     
+       <a href="metronome.php" class="image-link active"><img src="images/menu/metronome.png" alt=""></a>
+       <a href="tuner.php" class="image-link"><img src="images/menu/tuner.png" alt=""></a>
+      <a href="#" class="image-link"><img src="images/menu/songs.png" alt=""></a>
+       <a href="addexercise.php" class="image-link"><img src="images/menu/add.png" alt=""></a>
+       <a href="statistics.php" class="image-link"><img src="images/menu/chart.png" alt=""></a>
        
+    </div>
+    <div class="right-item">
+        <a href="#" class="image-link" id="menu-button"><img src="images/menu/user.png" alt=""></a>
+      <div class="submenu" id="submenu">
+            <a href="#">Ustawienia</a>
+            <a href="#">Historia</a>
+            <a href="logout.php">Wyloguj</a>
+        </div>
+    </div>
+</div>
+  
+  <script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+    var menuButton = document.getElementById("menu-button");
+    var submenu = document.getElementById("submenu");
+
+    menuButton.addEventListener("click", function() {
+        if (submenu.style.display === "none") {
+            submenu.style.display = "block";
+        } else {
+            submenu.style.display = "none";
+        }
+    });
+});
+    
+    
+</script>
+  
+  
+  
+   <div id="chat-box">
+   <div class="chat">
+    <input type="text" id="message" class="input-chat" placeholder="Wpisz wiadomość">
+   <button onclick="sendMessage()" class="button-chat">OK</button>
+  </div></div>
+  
+  <script src="js/chat.js"></script>
+  
+  <div class="main-container">
+  
+     <div class="right-container">
+     <?php include 'php/statistic/percent_master.php'; ?>
+     <br><br>
+     <?php include 'php/statistic/list_points_general.php'; ?>
+   </div>
+  
+   <div class="left-container">
+    
+  
+   </div>
+
+    
+   
+  
+     
+    
+    <div class="middle-container">  
       
+      
+      
+          
     <div id="metronome">
         <input type="number" id="tempoInput" class="inputstart" placeholder="Tempo (BPM)" value="120">
       <button id="startStopButton" class="buttonstart">Start</button><br><br>
@@ -93,70 +147,27 @@ $username = $_SESSION['username'];
         <button id="tempo100Button" class="buttontempo">100 BPM</button>
     </div>
 
-    <script>
-        let timer;
-        let tempo = 120; // Default tempo in BPM (beats per minute)
-        let playing = false;
-        let interval = 60000 / tempo; // Initial interval
-
-        function playClick() {
-            const click = new Audio('admin/t.mp3'); // Provide your click sound file
-            click.play();
-        }
-
-        function startStop() {
-            if (!playing) {
-                playing = true;
-                startMetronome();
-                document.getElementById('startStopButton').innerText = 'Stop';
-            } else {
-                playing = false;
-                clearInterval(timer);
-                document.getElementById('startStopButton').innerText = 'Start';
-            }
-        }
-
-        function startMetronome() {
-            timer = setInterval(playClick, interval);
-        }
-
-        function changeTempo(newTempo) {
-            tempo = newTempo;
-            interval = 60000 / tempo;
-            if (playing) {
-                clearInterval(timer);
-                startMetronome();
-            }
-            document.getElementById('tempoInput').value = tempo; // Update tempo input field
-        }
-
-        document.getElementById('startStopButton').addEventListener('click', startStop);
-        document.getElementById('tempoInput').addEventListener('change', function() {
-            tempo = parseInt(this.value);
-            interval = 60000 / tempo;
-            if (playing) {
-                clearInterval(timer);
-                startMetronome();
-            }
-        });
-
-        document.getElementById('tempo60Button').addEventListener('click', function() {
-            changeTempo(60);
-        });
-
-        document.getElementById('tempo80Button').addEventListener('click', function() {
-            changeTempo(80);
-        });
-
-        document.getElementById('tempo100Button').addEventListener('click', function() {
-            changeTempo(100);
-        });
-    </script>
       
+    <script src="js/metronome.js"></script>
+      
+      
+      
+      
+      
+    </div>
+  </div>
       
   
-        </div>
-      
+  
+  
+  
+  
+  
+  
+  
+  
+     
+
     <footer>
         &copy; 2024 The Broken Cello Quartet
     </footer>

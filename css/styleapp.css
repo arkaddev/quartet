@@ -1,156 +1,187 @@
-@media only screen and (max-width: 600px) {
-.container {
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    max-width: 800px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.container-left {
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 10px;
-  
-  left: 20px; /* Przykładowa odległość od lewej strony */
-  width: 80%; /* Przykładowa szerokość */
-  
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-  
-  nav .image-link img {
-    max-width: 20px; /* Ustaw maksymalną szerokość obrazka */
-    max-height: 20px; /* Ustaw maksymalną wysokość obrazka */
-}
-  
- nav a {
-    padding: 10px 15px;
-}
-}
-
-
-
-
-
-
+@media only screen and (max-width: 600px) {}
 
 @media only screen and (min-width: 601px) {
-.container {
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  
     
-    .news-container {
+    
+       body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    
+        min-height: 100vh; /* Minimalna wysokość strony, aby stopka zawsze była na dole */
+        position: relative; /* Ustawia strony jako referencję dla absolutnie pozycjonowanej stopki */
+   
+   
+  }
+
+  .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+  
+  }
+  .menu a{
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        padding: 5px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none; /* podkreslenie */
+  }
+  
+  .menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu .image-link img {
+    max-width: 35px; /* Ustaw maksymalną szerokość obrazka */
+    max-height: 35px; /* Ustaw maksymalną wysokość obrazka */
+    filter: invert(100%);
+  }
+  
+  .middle-item a {
+        margin: 0 10px;
+  }
+  
+  .right-item {
+        position: relative;
+    }
+  
+  .right-item:hover .submenu {
+        /*display: block;*/ /*otwarcie menu po najechaniu myszka */
+    }
+  
+  .right-item .submenu {
+        adisplay: none;/* otwarcie menu po najechaniu myszka */
+        position: absolute;
+        atop: 100%;
+        right: 5%;
+        abackground-color: #333;
+        padding: 10px;
+    }
+
+    
+    .submenu{
+        adisplay: block;/* otwarcie menu po najechaniu myszka */
+        display: none;
+        color: #fff;
+        background-color: #444;
+        text-decoration: none;
+        padding: 5px 0;
+        transition: background-color 0.3s ease;
+      
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 4px;
+  }
+ 
+        .submenu a {
+          display: block;
+          padding: 15px 70px;
+  }
+  
+  .submenu a:hover {
+        abackground-color: rgba(255, 255, 255, 0.1);
+    }
+
+a.active{
+  text-decoration: underline;
+  color: #333; /* Kolor tekstu dla aktywnego linku */
+  border-bottom: 2px solid yellow; /* Podkreślenie w kolorze żółtym */
+ 
+  border-radius: 20px;
+
+  }
+    
+    
+
+  
+  .main-container {
+    display: flex; /* Użyj flexboxa do ustawienia elementów w rzędzie */
+    justify-content: space-between; /* Ustawienie odstępu między elementami */
+    width: 100%; /* Możesz dostosować szerokość według potrzeb */
+    aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    padding: 10px; /* Dostosuj wypełnienie zewnętrznego kontenera */
+    box-sizing: border-box; /* Upewnij się, że padding nie wpływa na całkowitą szerokość kontenera 
+    */
+    background-color: #DCDCDC;
+    amargin: 10px 10px 10px 0; /* Dodaje odstęp na górze, dole i po lewej stronie, bez marginesu po prawej stronie */
+    }
+    
+  .left-container{
+    order: -1; /* Ustawia pierwszy kontener na lewo */
+    aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    width: 25%; /* Przykładowa szerokość */
+    margin-right: 15px;
+    margin-top: 20px;
+    
+    abackground-color: #f9f9f9;
+    aborder-radius: 10px;
+    abox-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 15px;
+    
+    padding: 15px;
+  atop: 0; /* Ustawia górną krawędź na górze okna przeglądarki */
+  atop: 25%; /* Ustawia górną krawędź na połowie wysokości okna przeglądarki */
+  abottom: 50px;
+  aheight: 60%; /* Ustawia wysokość na 100% rodzica (czyli okna przeglądarki) */
+}
+  
+  
+  
+  .middle-container {
+    aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    margin-left: auto; /* Ustawia drugi kontener na środku */
+    margin-right: auto;
+    margin-top: 20px;
+    
+    padding: 20px;
+    
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+  
+   .right-container {
+     aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+     order: 1; /* Ustawia trzeci kontener na prawo */
+     width: 25%; /* Przykładowa szerokość */
+     margin-left: 15px;
+     margin-top: 20px;
+     
+     abackground-color: #f9f9f9;
+     aborder-radius: 10px;
+     abox-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+     padding: 20px;
+  
+     font-size: 15px;
+}
+  
+ 
+    
+    .news {
       margin-bottom: 20px;
       padding: 10px;
-      background-color: #fff;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
 
-    .news-title {
-      font-weight: bold;
-      color: #333;
-    }
-
-    .news-description {
-      color: #666;
-    }
-    
-    
-
-.container-left {
-  background-color: #fff;
-  padding: 15px;
-  aposition: absolute;
-  position: fixed;
-  left: 20px; /* Przykładowa odległość od lewej strony */
-  atop: 0; /* Ustawia górną krawędź na górze okna przeglądarki */
-  atop: 25%; /* Ustawia górną krawędź na połowie wysokości okna przeglądarki */
-  bottom: 50px;
-  height: 60%; /* Ustawia wysokość na 100% rodzica (czyli okna przeglądarki) */
-  width: 250px; /* Przykładowa szerokość */
   
-  border-radius: 5px;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
-  font-size: 15px;
-}
 
-.inputbutton {
-      width: 30px;
-    }
- 
- .container-right {
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 20px;
-  position: absolute;
-  right: 20px; /* Przykładowa odległość od lewej strony */
-  aheight: 100%; /* Ustawia wysokość na 100% rodzica (czyli okna przeglądarki) */
-  width: 250px; /* Przykładowa szerokość */
+    
+      
+  
   
  
-  afont-size: 15px;
-   
-   
-    
-    max-width: 800px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-    
-    
-    
-        
-.panel-info{
-      color: #fff;
-  }
-    
+ 
   
-  nav .image-link img {
-    max-width: 40px; /* Ustaw maksymalną szerokość obrazka */
-    max-height: 40px; /* Ustaw maksymalną wysokość obrazka */
-    filter: invert(100%);
-}
-  
-
-nav a {
-    padding: 20px 15px;
-}
-  
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-nav {
-    background-color: #444;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-}
-
-nav a:hover {
-    background-color: #555;
-}
-
-
-
-footer {
+  footer {
     background-color: #333;
     color: #fff;
     text-align: center;
@@ -159,23 +190,47 @@ footer {
     bottom: 0;
     width: 100%;
 }
-
-
- nav .image-link img {
-    vertical-align: middle; /* Wycentruj obrazek w pionie */
-}
-
-    #chat-box {
-        height: 96%;
-        overflow-y: scroll;
-    }
+  
+    
+  #chat-box{
+    position: fixed;
+    bottom: 39px;
+    width: 250px; /* Szerokość */
+    height: 350px; /* Wysokość */
+background-color: #f9f9f9;
+        color: black;
+        padding: 20px;
+  overflow: auto;
+    margin-left: 10px;
+   border: 1px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    border-radius: 5px;
+  }
   
   
-  .chat-message {
+   .achat-message {
   border: 1px solid #ccc;
-  padding: 5px;
+  apadding: 5px;
   margin-bottom: 5px;
-  background-color: #FFE4E1;
-     border-radius: 5px;
+  background-color: #FFFFE0;
+    border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+     aborder-radius: 5px;
+   
+
     
 }
+  
+  .achat{
+    position: absolute;
+    bottom: 0;
+  }
+  
+   
+  
+ 
+ 
+   
+   
+  
+  
+  }
