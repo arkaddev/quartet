@@ -1,7 +1,24 @@
+var username;
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Pobranie wartości zmiennej z atrybutu data
+    var dataElement = document.getElementById("data");
+    username = dataElement.getAttribute("data-username");
+
+    // Wyświetlenie wartości zmiennej w konsoli
+    //console.log("Username w JavaScript: " + username);
+
+    // Wyświetlenie wartości zmiennej w elemencie HTML
+   // document.body.innerHTML += "<p>Username w JavaScript: " + username + "</p>";
+});
+
+
+
+
 function sendMessage() {
  
   
-  var username = "<?php echo $username; ?>";
+  //var username = "<?php echo $username; ?>";
     var message = document.getElementById("message").value;
     message = username +": "+ message;
   
@@ -34,3 +51,16 @@ function fetchMessages() {
 }
 
 setInterval(fetchMessages, 1000); // Pobierz wiadomości co sekundę
+
+// Zmienna przechowująca identyfikator interwału
+//var intervalId;
+
+// Funkcja do rozpoczęcia cyklicznego pobierania wiadomości
+//function startF() {
+//    intervalId = setInterval(fetchMessages, 1000);
+//}
+
+// Funkcja do zatrzymania cyklicznego pobierania wiadomości
+//function stopF() {
+//    clearInterval(intervalId);
+//}

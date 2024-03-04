@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="images/icon.png">
     <link rel="stylesheet" href="">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/chat.js" defer></script>
   <style>
    @media only screen and (max-width: 600px) {
      
@@ -480,7 +481,12 @@ a.active{
     
   </div>
   
+  <!-- Wartość zmiennej PHP przekazana do atrybutu data -->
+    <div id="data" data-username="<?php echo htmlspecialchars($username); ?>"></div>
+
   <script src="js/chat.js"></script>
+  <script>
+  </script>
   
   <script>
     // Pobranie przycisku minimalizacji
@@ -529,10 +535,65 @@ a.active{
       
       
       
-     
-      
+      <div class="news">
+      <h5>29.02.2024</h5>
+      <h2>Podsumowanie miesiąca luty 2024!</h2>
+      <p>Zaprawdę, powstał kwartet w wiosce...<br><br>
+        
+Na wiejskiej łące, kwartet jak marzenie,<br>
+Beata, jak słońce, punktów promienieje!<br>
+Arek i Wiktoria, jak wiatr wśród zbóż tańczą,<br>
+A Klaudia? Cóż, ta zaczęła od minusa, ale serce ma wciąż pełne jak stodoła zboża w lecie przed żniwami.<br><br>
+        
+Beata na altówce, jakby walczyła z dżungli 88.2 punktów,<br>
+Arek z wolonczelą, ale jak lew na arenie, 57.1 punktów, <br>
+Wiktoria na skrzypcach, jak strzała w locie, 45.9 punktów<br>
+A Klaudia, ah Klaudia, coś nie tak się jej klei, -9.4 punktów,<br>
+ale kto powiedział, że na początku wszystko musi być jak z bajki Królewny Śnieżki?<br><br>
+        
+Więc do pracy, młodzi muzycy, czas na marsz,<br>
+W muzyce świat jest piękniejszy, niechaj w dźwiękach błyszczy blask!<br>
+I choć razem jeszcze nie graliśmy, to niech nas to nie zraża,<br>
+Bo kiedy zaczniemy, świat będzie trząsł się w tańcu i w radości tańca!<br><br>
     
+Beata - 95.2 punktów<br>
+Arek - 63.1 punktów<br>
+Wiktoria - 48 punktów<br>
+Klaudia - -22.4 punktów
+        </p>
+    </div>
       
+      
+       <div class="news">
+      <h5></h5>
+      <h2>TO DO</h2>
+      <p>
+        <li>wyjazd i ntegracyjny</li>
+        <li>bluzy</li>
+        <li>statywy</li>
+        <li>segregatory</li>
+        <li>wizytowki</li></p>
+    </div>
+      
+      
+       <div class="news">
+      <h5></h5>
+      <h2>Co nowego</h2>
+      <p>
+      <li>04.03.2024 Nowe menu, oraz body strony</li>
+      <li>01.03.2024 Statystyki na obecny mieisiac</li>
+      <li>29.02.2024 Stoper przy zapisywaniu cwiczen</li>
+      <li>28.02.2024 Dodana punktacja</li>
+      <li>27.02.2024 Poprawiony uklad graficzny dla czatu</li>
+      <li>25.02.2024 Czat</li>
+      <li>25.02.2024 Zakladka historia w panelu uzytkownika</li>
+      <li>25.02.2024 Nowy formularz logowania oraz poprawione menu usera</li>
+      <li>23.02.2024 Nieaktualne wyniki podświetlane w innym kolorze</li>
+      <li>22.02.2024 User panel - mozliwosc wylogowania</li>
+      <li>21.02.2024 Nuty aktówki - cant help</li>
+      <li>21.02.2024 Wykres - mój dzienny czas ćwiczeń</li>
+         </p>
+    </div>
       
       
       
