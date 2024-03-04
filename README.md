@@ -13,5 +13,9 @@
 - chat
 - right and left container
 - new structure for project
-- points general and points month
+- new menu style
+- points general
+- points month
 - timer
+- statistics for current month
+- statistics for previous months in archive

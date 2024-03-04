@@ -1,6 +1,6 @@
 <?php
 
-// Statystyki na dany miesiąc z wykresem
+// Statystyki na obecny miesiąc z wykresem
 // Na podstawie chart_general.php
 
             // Inicjalizacja pustej asocjacyjnej tablicy dla przechowywania sum czasu dla każdego użytkownika
