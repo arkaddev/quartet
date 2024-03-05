@@ -22,6 +22,22 @@
         th {
             background-color: #f2f2f2;
         }
+     
+     
+     .button-play{
+       
+    width: 30px; /* ustaw szerokość i wysokość obrazka */
+    height: 30px;
+    background-image: url(images/songs/play.png); /* ścieżka do obrazka */
+    background-size: cover; /* dostosuj rozmiar obrazka do wymiarów przycisku */
+     }
+     .button-settings{
+       
+    width: 30px; /* ustaw szerokość i wysokość obrazka */
+    height: 30px;
+    background-image: url(images/songs/settings.png); /* ścieżka do obrazka */
+    background-size: cover; /* dostosuj rozmiar obrazka do wymiarów przycisku */
+     }
     </style>
 </head>
 
@@ -158,7 +174,6 @@ $pieces = json_decode($data, true);
 echo "<table>";
 echo "<tr><th>Title</th><th>Total</th><th>Violin 1</th><th>Violin 2</th><th>Viola</th><th>Cello</th></tr>";
 
-      $instrument = "violin1";
       
       foreach ($pieces as $piece) {
         echo "<tr>";
@@ -166,30 +181,30 @@ echo "<tr><th>Title</th><th>Total</th><th>Violin 1</th><th>Violin 2</th><th>Viol
         echo "<td>" . $piece['total'] . "</td>";
     
         echo "<td>" . $piece['violin1'];
-        echo '<button onclick="violin1Button(\'' . $piece['title'] . '\')">Click</button>';  
+        echo '<button onclick="violin1Button(\'' . $piece['title'] . '\')" class="button-play"></button>';  
         if ($instrument == "violin1") {
-            echo "<button onclick='myFunction(\"".$piece['title']."\")'>a</button></td>";  
+            echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings'></button></td>";  
         } else {
             echo "</td>";}
         
         echo "<td>" . $piece['violin2'];
-        echo '<button onclick="violin2Button(\'' . $piece['title'] . '\')">Click</button>';
+        echo '<button onclick="violin2Button(\'' . $piece['title'] . '\')" class="button-play"></button>';
         if ($instrument == "violin2") {
-            echo "<button onclick='myFunction(\"".$piece['title']."\")'>a</button></td>";  
+            echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings'></button></td>";  
         } else {
             echo "</td>";}
         
         echo "<td>" . $piece['viola'];
-        echo '<button onclick="violaButton(\'' . $piece['title'] . '\')">Click</button>';
+        echo '<button onclick="violaButton(\'' . $piece['title'] . '\')" class="button-play"></button>';
        if ($instrument == "viola") {
-            echo "<button onclick='myFunction(\"".$piece['title']."\")'>a</button></td>";  
+            echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings'></button></td>";  
         } else {
             echo "</td>";}
         
         echo "<td>" . $piece['cello'];
-        echo '<button onclick="celloButton(\'' . $piece['title'] . '\')">Click</button>';
+        echo '<button onclick="celloButton(\'' . $piece['title'] . '\')" class="button-play"></button>';
         if ($instrument == "cello") {
-            echo "<button onclick='myFunction(\"".$piece['title']."\")'>a</button></td>";  
+            echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings'></button></td>";  
         } else {
             echo "</td>";}
         
@@ -238,7 +253,17 @@ echo "</table>";
 ?>
       
       
+      <script>
+    function myFunction(title) {
+        var dane = prompt("Proszę wprowadzić dane:");
+        if (dane != null) {
+            alert("Wprowadzone dane: " + title);
+            // Tutaj możesz wykonać dodatkowe operacje na danych, np. przypisać do zmiennej.
+        }
+    }
+        
       
+</script>
       
       
       
