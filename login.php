@@ -114,8 +114,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($users as $user) {
         if ($user["username"] === $username && $user["password"] === $password) {
             // Ustaw zmienną sesji
-          $_SESSION['zalogowany'] = true;
+            //$_SESSION['zalogowany'] = true;
             $_SESSION["username"] = $username;
+          
+          
+            $_SESSION["instrument"] = $user["instrument"];
+          
             // Przekieruj na stronę powitalną
             header("Location: home.php");
             exit();

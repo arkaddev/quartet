@@ -1,18 +1,22 @@
 [
     {
         "username": "Arek",
-        "password": ""
+        "password": "",
+        "instrument": "cello"
     },
     {
         "username": "Klaudia",
-        "password": ""
+        "password": "",
+        "instrument": "violin1"
     },
     {
         "username": "Wiktoria",
-        "password": ""
+        "password": "",
+        "instrument": "violin2"
     },
     {
         "username": "Beata",
-        "password": ""
+        "password": "",
+        "instrument": "viola"
     }
 ]
