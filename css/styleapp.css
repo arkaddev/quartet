@@ -1,16 +1,170 @@
-@media only screen and (max-width: 600px) {}
+  @media only screen and (max-width: 600px) {
+     
+   body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0; 
+  }
 
-@media only screen and (min-width: 601px) {
+  .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+  
+  }
+  .menu a{
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        padding: 5px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none; /* podkreslenie */
+  }
+  
+  .menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu .image-link img {
+    max-width: 20px; /* Ustaw maksymalną szerokość obrazka */
+    max-height: 20px; /* Ustaw maksymalną wysokość obrazka */
+    filter: invert(100%);
+  }
+  
+  .right-item {
+        position: relative;
+    }
+  
+  
+  .right-item .submenu {
+        adisplay: none;/* otwarcie menu po najechaniu myszka */
+        position: absolute;
+        atop: 100%;
+        right: 5%;
+        abackground-color: #333;
+        padding: 10px;
+    }
+
+    
+    .submenu{
+        adisplay: block;/* otwarcie menu po najechaniu myszka */
+        display: none;
+        color: #fff;
+        background-color: #444;
+        text-decoration: none;
+        padding: 5px 0;
+        transition: background-color 0.3s ease;
+      
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 4px;
+  }
+ 
+        .submenu a {
+          display: block;
+          padding: 15px 70px;
+  }
+  
+  .submenu a:hover {
+        abackground-color: rgba(255, 255, 255, 0.1);
+    }
+
+a.active{
+  text-decoration: underline;
+  color: #333; /* Kolor tekstu dla aktywnego linku */
+  border-bottom: 2px solid yellow; /* Podkreślenie w kolorze żółtym */
+ 
+  border-radius: 20px;
+
+  }
+    
+    
+
+  
   
     
+  .left-container{
+     display: none;
+}
+  
+  
+  
+  .middle-container {
+    aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    margin-left: auto; /* Ustawia drugi kontener na środku */
+    margin-right: auto;
+    margin-top: 20px;
     
-       body {
+    flex-grow: 1; /* Środkowy kontener zajmie całą dostępną przestrzeń */
+           
+    
+    
+    padding: 20px;
+    
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+}
+  
+   .right-container {
+    display: none;
+}
+  
+ 
+    
+    .news {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+  
+    
+  #chat-box{
+  
+   top: 0;
+    height: 250px; /* Wysokość */
+background-color: #f9f9f9;
+        color: black;
+        padding: 20px;
+  overflow: auto;
+    margin: 10px;
+   border: 1px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
+    border-radius: 5px;
+  }
+  
+  
+  
+     
+     
+    }
+
+@media only screen and (min-width: 601px) {
+
+   body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-    
-        min-height: 100vh; /* Minimalna wysokość strony, aby stopka zawsze była na dole */
-        position: relative; /* Ustawia strony jako referencję dla absolutnie pozycjonowanej stopki */
+   
+     
+        amin-height: 100vh; /* Minimalna wysokość strony, aby stopka zawsze była na dole */
+        aposition: relative; /* Ustawia strony jako referencję dla absolutnie pozycjonowanej stopki */
    
    
   }
@@ -92,7 +246,7 @@
 a.active{
   text-decoration: underline;
   color: #333; /* Kolor tekstu dla aktywnego linku */
-  border-bottom: 2px solid yellow; /* Podkreślenie w kolorze żółtym */
+  border-bottom: 2px solid silver; /* Podkreślenie w kolorze żółtym */
  
   border-radius: 20px;
 
@@ -116,9 +270,9 @@ a.active{
   .left-container{
     order: -1; /* Ustawia pierwszy kontener na lewo */
     aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
-    width: 25%; /* Przykładowa szerokość */
-   
-    margin-right: 15px;
+    width: 20%; /* Przykładowa szerokość */
+    
+    margin-right: 50px;
     margin-top: 20px;
     
     abackground-color: #f9f9f9;
@@ -136,28 +290,30 @@ a.active{
   
   
   .middle-container {
-    
     aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
     margin-left: auto; /* Ustawia drugi kontener na środku */
     margin-right: auto;
     margin-top: 20px;
     
+    min-width: 35%; 
     flex-grow: 1; /* Środkowy kontener zajmie całą dostępną przestrzeń */
            
+    
     
     padding: 20px;
     
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
 }
   
    .right-container {
      aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
      order: 1; /* Ustawia trzeci kontener na prawo */
-     width: 25%; /* Przykładowa szerokość */
-    
-     margin-left: 15px;
+     width: 20%; /* Przykładowa szerokość */
+     
+     margin-left: 50px;
      margin-top: 20px;
      
      abackground-color: #f9f9f9;
@@ -197,46 +353,55 @@ a.active{
     width: 100%;
 }
   
-    
-  #chat-box{
+  
+  .chat-container {
     position: fixed;
-    bottom: 39px;
-    width: 250px; /* Szerokość */
-    height: 350px; /* Wysokość */
-background-color: #f9f9f9;
-        color: black;
-        padding: 20px;
-  overflow: auto;
-    margin-left: 10px;
-   border: 1px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
-    border-radius: 5px;
-  }
-  
-  
-   .achat-message {
-  border: 1px solid #ccc;
-  apadding: 5px;
-  margin-bottom: 5px;
-  background-color: #FFFFE0;
+    bottom: 39px ;
+    
+    width: 300px; /* Szerokość */
+    height: 450px; /* Wysokość */
+    margin-left: 20px;
+    
+    aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
     border-radius: 10px;
-     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-     aborder-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  
+    background-color: #f9f9f9;
+    padding: 10px;
    
-
     
 }
   
-  .achat{
+  #chat-box {
     position: absolute;
-    bottom: 0;
+    margin-top: 15px;
+    height: 85%;
+     width: 300px; /* Szerokość */
+    overflow: auto;
+    abackground-color: #FFE4E1;   
+    }
+  
+  .chat-input-button{
+    position: absolute;
+    bottom: 10px;
   }
+    
+  .chat-message {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  background-color: #728FCE;
+  border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   
-   
-  
+
+}
+    #minimalization {
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        cursor: pointer;
+    }
+
  
- 
-   
-   
-  
-  
-  }
+    }   
