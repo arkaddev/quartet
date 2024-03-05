@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin panel</title>
-   <link rel="stylesheet" href="css/styleapp.css?v=1.23">
+    <title>Broken Cello</title>
+   <link rel="stylesheet" href="css/styleapp.css?v=1.26">
   <style>
         
         #metronome {
@@ -73,7 +73,7 @@
      
        <a href="metronome.php" class="image-link active"><img src="images/menu/metronome.png" alt=""></a>
        <a href="tuner.php" class="image-link"><img src="images/menu/tuner.png" alt=""></a>
-      <a href="#" class="image-link"><img src="images/menu/songs.png" alt=""></a>
+      <a href="songs.php" class="image-link"><img src="images/menu/songs.png" alt=""></a>
        <a href="addexercise.php" class="image-link"><img src="images/menu/add.png" alt=""></a>
        <a href="statistics.php" class="image-link"><img src="images/menu/chart.png" alt=""></a>
        
@@ -108,13 +108,36 @@
   
   
   
-   <div id="chat-box">
-   <div class="chat">
-    <input type="text" id="message" class="input-chat" placeholder="Wpisz wiadomość">
-   <button onclick="sendMessage()" class="button-chat">OK</button>
-  </div></div>
+     <div id="window" class="chat-container">
+    <div id="minimalization">&#x2014;</div>
+    <div id="chat-box"></div>
+      
+      <div class="chat-input-button">
+        <input type="text" id="message" class="chat-input" placeholder="Wpisz wiadomość">
+        <button onclick="sendMessage()" class="chat-button">OK</button>
+      </div>
+    
+  </div>
   
+  <!-- Wartość zmiennej PHP przekazana do atrybutu data -->
+    <div id="data" data-username="<?php echo htmlspecialchars($username); ?>"></div>
+
   <script src="js/chat.js"></script>
+ 
+  <script>
+    // Pobranie przycisku minimalizacji
+    var minimalizationButton = document.getElementById('minimalization');
+
+    // Pobranie zawartości okna
+    var windowContent = document.getElementById('window');
+
+    // Dodanie obsługi zdarzenia kliknięcia na przycisk minimalizacji
+    minimalizationButton.addEventListener('click', function() {
+        // Minimalizacja okna
+        windowContent.style.display = windowContent.style.display === 'none' ? 'block' : 'none';
+    });
+</script>
+  
   
   <div class="main-container">
   
@@ -124,24 +147,16 @@
      <?php include 'php/statistic/list_points_general.php'; ?>
    </div>
   
-   <div class="left-container">
-    
-  
+   <div class="left-container">  
    </div>
 
     
-   
-  
-     
-    
     <div class="middle-container">  
-      
-      
       
           
     <div id="metronome">
         <input type="number" id="tempoInput" class="inputstart" placeholder="Tempo (BPM)" value="120">
-      <button id="startStopButton" class="buttonstart">Start</button><br><br>
+      <button id="startStopButtonMetronome" class="buttonstart">Start</button><br><br>
         <button id="tempo60Button" class="buttontempo">60 BPM</button>
         <button id="tempo80Button" class="buttontempo">80 BPM</button>
         <button id="tempo100Button" class="buttontempo">100 BPM</button>
@@ -151,23 +166,9 @@
     <script src="js/metronome.js"></script>
       
       
-      
-      
-      
     </div>
   </div>
-      
   
-  
-  
-  
-  
-  
-  
-  
-  
-     
-
     <footer>
         &copy; 2024 The Broken Cello Quartet
     </footer>

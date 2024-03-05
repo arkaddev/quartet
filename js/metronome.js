@@ -13,11 +13,11 @@
             if (!playing) {
                 playing = true;
                 startMetronome();
-                document.getElementById('startStopButton').innerText = 'Stop';
+                document.getElementById('startStopButtonMetronome').innerText = 'Stop';
             } else {
                 playing = false;
                 clearInterval(timer);
-                document.getElementById('startStopButton').innerText = 'Start';
+                document.getElementById('startStopButtonMetronome').innerText = 'Start';
             }
         }
 
@@ -35,7 +35,7 @@
             document.getElementById('tempoInput').value = tempo; // Update tempo input field
         }
 
-        document.getElementById('startStopButton').addEventListener('click', startStop);
+        document.getElementById('startStopButtonMetronome').addEventListener('click', startStop);
         document.getElementById('tempoInput').addEventListener('change', function() {
             tempo = parseInt(this.value);
             interval = 60000 / tempo;
