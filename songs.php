@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <style>
-        table {
+        /*table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -21,6 +21,31 @@
         }
         th {
             background-color: #f2f2f2;
+        }*/
+     
+     table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: grey;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
         }
     
      .button-play{
@@ -28,7 +53,7 @@
     height: 30px;
     background-image: url(images/songs/play.png); /* ścieżka do obrazka */
     background-size: cover; /* dostosuj rozmiar obrazka do wymiarów przycisku */
-       background-color: green;
+       background-color: #50C878;
        margin-left: 20px;
        margin-right: 5px;
      }
@@ -159,27 +184,32 @@ echo "<tr><th>Tytuł</th><th>Metronom</th><th>Skrzypce 1</th><th>Skrzypce 2</th>
         
         echo "<tr>";
         echo "<td>" . $piece['title'] . "</td>";
+        
         echo "<td> <button onclick='myFunctionTempo(\"".$piece['tempo']."\",\"".$i."\")' class='button-tempo' id='buttonTempo".$i."' name='additionalData' value='someValue'>".$piece['tempo']."</button></td>";  
     
         echo "<td>" . $piece['violin1']."/".$piece['total'];
+        echo '<button onclick="playSong(\'' . $piece['id'] . '\', \'violin1\')" class="button-play"></button>';  
         if ($instrument == "violin1") {
           echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
             echo "</td>";}
         
         echo "<td>" . $piece['violin2']."/".$piece['total'];
+        echo '<button onclick="playSong(\'' . $piece['id'] . '\', \'violin2\')" class="button-play"></button>';   
         if ($instrument == "violin2") {
           echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
             echo "</td>";}
         
         echo "<td>" . $piece['viola']."/".$piece['total'];
+        echo '<button onclick="playSong(\'' . $piece['id'] . '\', \'viola\')" class="button-play"></button>';   
        if ($instrument == "viola") {
           echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
             echo "</td>";}
         
         echo "<td>" . $piece['cello']."/".$piece['total'];
+        echo '<button onclick="playSong(\'' . $piece['id'] . '\', \'cello\')" class="button-play"></button>';  
         if ($instrument == "cello") {
           echo "<button onclick='myFunctionSettings(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
@@ -217,7 +247,8 @@ foreach ($data as $piece) {
       
 echo "<tr>";
 echo "<td><strong>Total</strong></td>";
-echo "<td><strong>$total</strong></td>";
+//echo "<td><strong>$total</strong></td>";
+      echo "<td></td>";
 echo "<td><strong>$p_violin1Total</strong>%</td>";
 echo "<td><strong>$p_violin2Total</strong>%</td>";
 echo "<td><strong>$p_violaTotal</strong>%</td>";
@@ -296,7 +327,10 @@ echo "</table>";
         }
 
     
-   
+   function playSong(id,instr) {
+            var audio = document.getElementById(id+instr);
+            audio.play();
+        }
 </script>
 <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -349,52 +383,10 @@ document.getElementById("myButton1").addEventListener("click", function() {
 });
  
 </script>
-        <h2>Utwory</h2>
-        
-        <button onclick="">Start (Nearer My God to thee - 70 BPM)</button>
-        <button onclick="">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio1')">s1</button>
-        <button disabled onclick="playSound('audio2')">s1</button>
-        <button disabled onclick="playSound('audio3')">a</button>
-        <button disabled onclick="playSound('audio4')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <button onclick="">Start (Cant help - 70 BPM)</button>
-        <button onclick="">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio5')">s1</button>
-        <button disabled onclick="playSound('audio6')">s1</button>
-        <button onclick="playSound('audio7')">a</button>
-        <button disabled onclick="playSound('audio8')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <button onclick="startMetronome(85)">Start (Wedding march Wagner - 85 BPM)</button>
-        <button onclick="stopMetronome()">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio9')">s1</button>
-        <button disabled onclick="playSound('audio10')">s1</button>
-        <button onclick="playSound('audio11')">a</button>
-        <button disabled onclick="playSound('audio12')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <button onclick="startMetronome(105)">Start (Hungarian dance - 105 BPM)</button>
-        <button onclick="stopMetronome()">Stop</button>
-        <br>
-        <button disabled onclick="playSound('audio13')">s1</button>
-        <button disabled onclick="playSound('audio14')">s1</button>
-        <button disabled onclick="playSound('audio15')">a</button>
-        <button disabled onclick="playSound('audio16')">w</button>
-        <button onclick="pauseAudio()">Zatrzymaj</button>
-        <br><br>
-        
-        <audio id="audio7" src="admin/sounds/altowka cant help.mp3"></audio>
-        <audio id="audio11" src="admin/sounds/altowka wagner.mp3"></audio>
+     
+        <audio id="2viola" src="admin/sounds/altowka cant help.mp3"></audio>
+        <audio id="3viola" src="admin/sounds/altowka wagner.mp3"></audio>
   
-      
     
     </div>
   </div>
