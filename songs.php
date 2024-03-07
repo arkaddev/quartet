@@ -22,6 +22,7 @@
         th {
             background-color: #f2f2f2;
         }
+    
      .button-play{
     width: 30px; /* ustaw szerokość i wysokość obrazka */
     height: 30px;
@@ -31,12 +32,26 @@
        margin-left: 20px;
        margin-right: 5px;
      }
+     
      .button-settings{
     width: 30px; /* ustaw szerokość i wysokość obrazka */
     height: 30px;
     background-image: url(images/songs/settings.png); /* ścieżka do obrazka */
     background-size: cover; /* dostosuj rozmiar obrazka do wymiarów przycisku */
      }
+     
+     .button-tempo{
+    width: 100px; /* ustaw szerokość i wysokość obrazka */
+    height: 30px;
+       background-color: #008CBA;
+    color: white;
+       border: none;
+      
+     }
+     
+     .button-tempo:hover {
+    background-color: #454545;
+}
     </style>
 </head>
 <body>
@@ -137,36 +152,36 @@ $data = json_decode($data, true);
 
 // Tworzenie tabeli HTML
 echo "<table>";
-echo "<tr><th>Title</th><th>Total</th><th>Violin 1</th><th>Violin 2</th><th>Viola</th><th>Cello</th></tr>";
+echo "<tr><th>Tytuł</th><th>Metronom</th><th>Skrzypce 1</th><th>Skrzypce 2</th><th>Altówka</th><th>Wiolonczela</th></tr>";
 
      $i = 1;
       foreach ($data as $piece) {
         
         echo "<tr>";
         echo "<td>" . $piece['title'] . "</td>";
-        echo "<td>" . $piece['total'] . "</td>";
+        echo "<td> <button onclick='myFunctionTempo(\"".$piece['tempo']."\",\"".$i."\")' class='button-tempo' id='buttonTempo".$i."' name='additionalData' value='someValue'>".$piece['tempo']."</button></td>";  
     
-        echo "<td>" . $piece['violin1'];
+        echo "<td>" . $piece['violin1']."/".$piece['total'];
         if ($instrument == "violin1") {
           echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
             echo "</td>";}
         
-        echo "<td>" . $piece['violin2'];
+        echo "<td>" . $piece['violin2']."/".$piece['total'];
         if ($instrument == "violin2") {
           echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
             echo "</td>";}
         
-        echo "<td>" . $piece['viola'];
+        echo "<td>" . $piece['viola']."/".$piece['total'];
        if ($instrument == "viola") {
           echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
             echo "</td>";}
         
-        echo "<td>" . $piece['cello'];
+        echo "<td>" . $piece['cello']."/".$piece['total'];
         if ($instrument == "cello") {
-          echo "<button onclick='myFunction(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
+          echo "<button onclick='myFunctionSettings(\"".$piece['title']."\")' class='button-settings' id='myButton".$i."' name='additionalData' value='someValue'></button></td>";  
         } else {
             echo "</td>";}
         
@@ -214,8 +229,14 @@ echo "</table>";
 ?>
 
       
+      
+      
+     
+        <input type="hidden" id="tempoInput" class="inputstart" placeholder="Tempo (BPM)" value="120">      
+    <script src="js/metronome.js"></script>
+      
       <script>
-         function myFunction(title) {
+         function myFunctionSettings(title) {
         var bars = prompt("Proszę wprowadzić dane:");
 
         // Utworzenie formularza i dodanie ukrytego pola z wartością zmiennej bars
@@ -254,28 +275,28 @@ echo "</table>";
         
         
         
-        
-    function amyFunction(title) {
-        var bars = prompt("Proszę wprowadzić dane:");
-        
-      if (bars != null) {
-            alert("Wprowadzone dane: " + bars);
-            
-          var inputBars = document.getElementById("idBars");
-        var inputTitle = document.getElementById("idTitle");
-        var inputInstrument = document.getElementById("idInstrument");
-        // Przypisz wartość do przycisku
-        inputBars.value = bars;
-        inputTitle.value = title;
-        
-        inputInstrument.value = "<?php echo $instrument;?>";
-// Pobieramy przycisk za pomocą jego identyfikatora
-  var button = document.getElementById('submitButton');
+         function myFunctionTempo(tempo, i) {
+           changeTempo(tempo);
+           var button = document.getElementById('buttonTempo'+i); // Pobranie przycisku po id
+           var previousColor = button.style.backgroundColor; // Zapamiętanie poprzedniego koloru
+     
+       if (!playing) {
+                playing = true;
+                startMetronome();
+                document.getElementById('buttonTempo'+i).innerText = 'Stop';
+          
+    button.style.backgroundColor = "red"; // Zmiana koloru tła przycisku na czerwony
 
-  // Wywołujemy kliknięcie na przycisku
-  button.click();
-      
-    }}    
+            } else {
+                playing = false;
+                clearInterval(timer);
+                document.getElementById('buttonTempo'+i).innerText = 'Start';
+            button.style.backgroundColor = "green"; 
+            }
+        }
+
+    
+   
 </script>
 <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -2,33 +2,37 @@
     {
         "title": "Nearer My God to thee",
         "total": 16,
-        "violin1": 0,
+        "tempo": 70,
+        "violin1": "16",
         "violin2": 0,
-        "viola": 0,
-        "cello": 0
+        "viola": "16",
+        "cello": "16"
     },
     {
-        "title": "Can't Help",
+        "title": "Cant Help",
         "total": 12,
+        "tempo": 70,
         "violin1": 0,
         "violin2": 0,
         "viola": 0,
-        "cello": 0
+        "cello": "12"
     },
     {
-        "title": "Wedding March (Wagner)",
+        "title": "Wedding March Wagner",
         "total": 32,
+        "tempo": 80,
         "violin1": 0,
         "violin2": 0,
-        "viola": 0,
-        "cello": 0
+        "viola": "0",
+        "cello": "32"
     },
     {
         "title": "Hungarian Dance",
         "total": 48,
+        "tempo": 120,
         "violin1": 0,
         "violin2": 0,
         "viola": 0,
-        "cello": 0
+        "cello": "48"
     }
 ]
