@@ -17,8 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function sendMessage() {
  
-  
-  //var username = "<?php echo $username; ?>";
+if (username) {
+   
+    //var username = "<?php echo $username; ?>";
     var message = document.getElementById("message").value;
     message = username +": "+ message;
   
@@ -36,7 +37,13 @@ var chatBox = document.getElementById('chat-box');
 
 // Ustawienie wartości scrollTop na maksymalną wartość, co spowoduje przesunięcie paska przewijania na dół
 chatBox.scrollTop = chatBox.scrollHeight;
+   
+} else {
+      window.location.href = "login.php";
+}
 
+  
+  
 }
 
 function fetchMessages() {

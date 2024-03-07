@@ -14,8 +14,8 @@
 - right and left container
 - new structure for project
 - new menu style
-- points general
-- points month
 - timer
 - statistics for current month
 - statistics for previous months in archive
+- points general
+- points month
