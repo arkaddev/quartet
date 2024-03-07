@@ -192,13 +192,21 @@ foreach ($data as $piece) {
 }
 
 // Wyświetlanie podsumowania
+      
+    //zaokraglenie do 1 miejsca po przecinku
+    //wynik podany w procentach
+    $p_violin1Total=round(100*$violin1Total/$total,1);
+    $p_violin2Total=round(100*$violin2Total/$total,1);
+    $p_violaTotal=round(100*$violaTotal/$total,1);
+    $p_celloTotal=round(100*$celloTotal/$total,1);
+      
 echo "<tr>";
 echo "<td><strong>Total</strong></td>";
 echo "<td><strong>$total</strong></td>";
-echo "<td><strong>$violin1Total</strong></td>";
-echo "<td><strong>$violin2Total</strong></td>";
-echo "<td><strong>$violaTotal</strong></td>";
-echo "<td><strong>$celloTotal</strong></td>";
+echo "<td><strong>$p_violin1Total</strong>%</td>";
+echo "<td><strong>$p_violin2Total</strong>%</td>";
+echo "<td><strong>$p_violaTotal</strong>%</td>";
+echo "<td><strong>$p_celloTotal</strong>%</td>";
 echo "</tr>";
       
 echo "</table>";   
