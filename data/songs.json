@@ -38,5 +38,25 @@
         "violin2": 0,
         "viola": 0,
         "cello": "48"
+    },
+    {
+        "id": 5,
+        "title": "Canon in D",
+        "total": 0,
+        "tempo": 70,
+        "violin1": 0,
+        "violin2": 0,
+        "viola": 0,
+        "cello": "0"
+    },
+    {
+        "id": 6,
+        "title": "One call away",
+        "total": 0,
+        "tempo": 70,
+        "violin1": 0,
+        "violin2": 0,
+        "viola": 0,
+        "cello": 0
     }
 ]

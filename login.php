@@ -117,8 +117,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //$_SESSION['zalogowany'] = true;
             $_SESSION["username"] = $username;
           
-          
+            $_SESSION["id"] = $user["id"];
+          $_SESSION["group"] = $user["group"];
             $_SESSION["instrument"] = $user["instrument"];
+          
+           
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          // Ustawienie czasu rozpoczęcia sesji na aktualny czas
+$_SESSION['start'] = time();
+
+// Ustawienie czasu wygaśnięcia sesji na 24 godziny od czasu rozpoczęcia
+$_SESSION['expire'] = $_SESSION['start'] + (24 * 60 * 60); // 24 godziny * 60 minut * 60 sekund
+
+          
           
             // Przekieruj na stronę powitalną
             header("Location: home.php");

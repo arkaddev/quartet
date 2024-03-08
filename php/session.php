@@ -23,4 +23,7 @@ if (!isset($_SESSION["username"])) {
 // Odczytaj nazwę użytkownika z sesji
 $username = $_SESSION['username'];
 $instrument = $_SESSION["instrument"];
+$id = $_SESSION["id"];
+$group = $_SESSION["group"];
+include 'php/active/add_last_active.php';
 ?>

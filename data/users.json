@@ -1,22 +1,47 @@
 [
     {
+        "id": 1,
+        "username": "admin",
+        "password": "a1",
+        "role": "admin",
+        "last_active": 0,
+        "group": 0,
+        "instrument": ""
+    },
+    {
+        "id": 2,
         "username": "Arek",
-        "password": "",
+        "password": "arek1",
+        "role": "user",
+        "last_active": "2024-03-08 14:35:19",
+        "group": "Broken Cello",
         "instrument": "cello"
     },
     {
+        "id": 3,
         "username": "Klaudia",
-        "password": "",
+        "password": "Skunks",
+        "role": "user",
+        "last_active": 0,
+        "group": "Broken Cello",
         "instrument": "violin1"
     },
     {
+        "id": 4,
         "username": "Wiktoria",
-        "password": "",
+        "password": "SmyczekWi",
+        "role": "user",
+        "last_active": 0,
+        "group": "Broken Cello",
         "instrument": "violin2"
     },
     {
+        "id": 5,
         "username": "Beata",
-        "password": "",
+        "password": "violavioletka1!",
+        "role": "user",
+        "last_active": 0,
+        "group": "Broken Cello",
         "instrument": "viola"
     }
 ]
