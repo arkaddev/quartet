@@ -1,0 +1,22 @@
+[
+    {
+        "username": "Arek",
+        "password": "",
+        "instrument": "cello"
+    },
+    {
+        "username": "Klaudia",
+        "password": "",
+        "instrument": "violin1"
+    },
+    {
+        "username": "Wiktoria",
+        "password": "",
+        "instrument": "violin2"
+    },
+    {
+        "username": "Beata",
+        "password": "",
+        "instrument": "viola"
+    }
+]
