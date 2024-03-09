@@ -1,4 +1,6 @@
 <?php
+// Statystyki na obecny dzien z wykresem
+// Na podstawie chart_general.php
 
 $sumy_uzytkownikow = array(); // Inicjalizacja pustej asocjacyjnej tablicy dla przechowywania sum czasu dla każdego użytkownika
 
@@ -9,7 +11,16 @@ foreach ($lines as $line) { // Przejdź przez każdą linię w tablicy
 
   $parts = explode(',', $line); // Podziel linię na części za pomocą przecinka
   
-  if(count($parts) == 3) { // Jeśli liczba części wynosi 3 (czyli mamy wszystkie oczekiwane dane)
+  
+              
+  $dzien = date('d-m-Y'); // Pobierz miesiąc z daty
+              
+  $datetime = $parts[2]; // $parts[2] zawiera datę i czas
+  $timestamp = strtotime($datetime); // Konwertuj datę i czas na znacznik czasu
+  $dzien_miesiac_i_rok = date("d-m-Y", $timestamp); // Formatuj miesiąc i rok
+  
+  
+  if(count($parts) == 3&& $dzien_miesiac_i_rok==$dzien ) { // Jeśli liczba części wynosi 3 (czyli mamy wszystkie oczekiwane dane)
     $imie = $parts[0];
     $czas_w_minutach = (int)$parts[1]; // Konwersja na liczbę całkowitą
                     
@@ -29,8 +40,7 @@ arsort($sumy_uzytkownikow); // Posortuj tablicę sumy_uzytkownikow według warto
 $miejsce = 1; // Licznik miejsca na liście
 ?>
 
-<canvas id="chartGeneral"></canvas>
-
+<canvas id="chartDay"></canvas>
 
 <?php
 /*
@@ -46,6 +56,8 @@ foreach ($sumy_uzytkownikow as $imie => $suma) {
 ?>
 
 <script>
+      
+
 
 
         // Dane użytkowników i ich sumy czasu
@@ -54,27 +66,26 @@ foreach ($sumy_uzytkownikow as $imie => $suma) {
         var data = Object.values(usersData);
 
         // Konwertuj sumę czasu z minut na godziny
-        for (var i = 0; i < data.length; i++) {
-            var hours = data[i] / 60;
-            data[i] = hours.toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
-        }
+        //for (var i = 0; i < data.length; i++) {
+        //    var hours = data[i] / 60;
+        //    data[i] = hours.toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
+        //}
 
         // Konfiguracja wykresu
-        var ctx = document.getElementById('chartGeneral').getContext('2d');
+        var ctx = document.getElementById('chartDay').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
-          //type: 'pie',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Suma czasu (godziny)',
+                    label: 'Bieżący dzień',
                     data: data,
                     //backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     backgroundColor: [
       'rgb(255, 99, 132, 0.2)',
       'rgb(54, 162, 235, 0.2)',
       'rgb(128, 256, 128, 0.2)',
-      'rgb(255, 205, 86, 0.2)'            
+      'rgb(255, 205, 86, 0.2)'                
     ],
                   borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
