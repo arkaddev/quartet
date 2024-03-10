@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Broken Cello app</title>
     <link rel="icon" type="image/png" href="images/icon.png">
-    <link rel="stylesheet" href="css/styleapp.css?v=2.0">
+    <link rel="stylesheet" href="css/styleapp.css?v=3.1">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/chat.js" defer></script>
 
@@ -22,7 +22,7 @@
     <div class="menu">
     <div class="left-item">
         <a href="home.php" class="image-link active"><img src="images/menu/home.png" alt=""></a>
-        
+        <a href="#" id="messageMenu" class="image-link"><img src="images/menu/message.png" alt=""></a>
     </div>
     <div class="middle-item">
      
@@ -63,7 +63,7 @@
   
   
   
-  <div id="window" class="chat-container">
+  <div id="chatContainer" class="chat-container" style="display: none;">
     <div id="minimalization">&#x2014;</div>
     <div id="chat-box"></div>
       
@@ -84,13 +84,22 @@
     var minimalizationButton = document.getElementById('minimalization');
 
     // Pobranie zawartości okna
-    var windowContent = document.getElementById('window');
+    var windowContent = document.getElementById('chatContainer');
 
     // Dodanie obsługi zdarzenia kliknięcia na przycisk minimalizacji
     minimalizationButton.addEventListener('click', function() {
         // Minimalizacja okna
         windowContent.style.display = windowContent.style.display === 'none' ? 'block' : 'none';
-    });
+    })
+    
+   var messageButton = document.getElementById('messageMenu');
+    messageButton.addEventListener('click', function() {
+        // Minimalizacja okna
+        windowContent.style.display = windowContent.style.display === 'none' ? 'block' : 'none';
+    })
+    
+    
+    ;
 </script>
   
   
@@ -98,6 +107,13 @@
   
      <div class="right-container">
      
+    
+   <?php include 'php/statistic/chart_day.php'; ?>
+   <br>
+   <?php include 'php/statistic/chart_yesterday.php'; ?>
+       
+       <br><br>
+       
      <?php include 'php/statistic/percent_master.php'; ?>
      <br><br>
      <?php include 'php/statistic/list_points_general.php'; ?>
@@ -115,14 +131,15 @@
     
     <div class="middle-container">  
       
-    
-     
+      <div class="news">
+      <h5>09.03.2024</h5>
+      <h2>Aktualizacja Broken Cello app!</h2>
+      <p>Utworzono wykresy na stronie głównej.<br><br>
+       Wykresy zawierają wyniki z bieżącego oraz poprzedniego dnia.<br>
+        </p>
+    </div>
       
-      
-     
-      
-   
-      
+
       
     </div>
   </div>
