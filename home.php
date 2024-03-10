@@ -9,7 +9,32 @@
     <link rel="icon" type="image/png" href="images/icon.png">
     <link rel="stylesheet" href="css/styleapp.css?v=3.1">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/chat.js" defer></script>
+  <style>
+   table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     border-radius: 10px;
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+          
+          
+        }
+        th {
+          display: none;
+        }
+        
+    .online{
+      color: green;
+    }
+  
+  
+  </style>
 
 </head>
 <body>

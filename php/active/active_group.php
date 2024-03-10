@@ -20,7 +20,8 @@ usort($usersData, 'compareUsers');
   
   
     // Wyświetlenie nagłówków tabeli
-    echo "<table><tr><th>Username</th><th>Status</th></tr>";
+    //echo "<table><tr><th>Username</th><th>Status</th></tr>";
+  echo "<table><tr><th></th><th></th></tr>";
   
     // Przejście przez wszystkich użytkowników
     foreach ($usersData as $user) {
@@ -50,20 +51,22 @@ usort($usersData, 'compareUsers');
   */
          $timeSinceLastActivity = $currentTime - $lastActiveTime;
         if ($timeSinceLastActivity <= $onlineThreshold) {
-            $onlineStatus = "Online";
+           // $onlineStatus = "Online";
+         $onlineStatus = '<div class="online">Online</div>';
+
             $timeAgo = "";
         } else {
             $hoursAgo = floor($timeSinceLastActivity / 3600); // Convert seconds to hours
             if ($hoursAgo >= 1) {
-                $timeAgo = "$hoursAgo hour(s) ago";
+                $timeAgo = "$hoursAgo godzin temu";
             } else {
                 $minutesAgo = floor($timeSinceLastActivity / 60); // Convert seconds to minutes
-                $timeAgo = "$minutesAgo minute(s) ago";
+                $timeAgo = "$minutesAgo minut temu";
             }
-            $onlineStatus = "Offline";
+            $onlineStatus = $timeAgo;
         }
 
-        echo "<tr><td>$username</td><td>$onlineStatus</td><td>$timeAgo</td></tr>";
+        echo "<tr><td>$username</td><td>$onlineStatus</td></tr>";
    
         
         
