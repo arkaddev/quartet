@@ -161,7 +161,7 @@ background-color: #f9f9f9;
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-   
+   background-color: #DCDCDC;
      
         amin-height: 100vh; /* Minimalna wysokość strony, aby stopka zawsze była na dole */
         aposition: relative; /* Ustawia strony jako referencję dla absolutnie pozycjonowanej stopki */
@@ -360,21 +360,23 @@ a.active{
     
     width: 300px; /* Szerokość */
     height: 450px; /* Wysokość */
-    margin-left: 20px;
+    
+    margin-right: 20px;
+    right: 0;
     
     aborder: 2px solid #000; /* Dodaj obramowanie, jeśli jest to potrzebne */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   
     background-color: #f9f9f9;
-    padding: 10px;
+    padding: 5px;
    
     
 }
   
   #chat-box {
     position: absolute;
-    margin-top: 15px;
+    margin-top: 20px;
     height: 85%;
      width: 300px; /* Szerokość */
     overflow: auto;
@@ -390,9 +392,11 @@ a.active{
   border: 1px solid #ccc;
   padding: 5px;
   margin: 5px;
-  background-color: #728FCE;
+  background-color: #ADD8E6;
   border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    font-size: 15px;
   
 
 }
