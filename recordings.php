@@ -11,30 +11,66 @@
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
   
-       h1 {
-      color: #333;
-    }
-    button {
-      padding: 10px 20px;
+     
+    #startRecording{
       font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #007bff;
-      color: #fff;
-      margin: 10px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    button:disabled {
+    
+   #startRecording:hover {
+    background-color: #454545;
+}
+    
+    #stopRecording{
+      font-size: 16px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    #stopRecording:hover {
+    background-color: #454545;
+}
+    
+    #sendRecording{
+      font-size: 16px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: grey;
+    color: white;
+    border: none;
+    cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    #sendRecording:hover {
+    background-color: #454545;
+}
+
+    #stopRecording:disabled {
       background-color: #ccc;
       cursor: not-allowed;
     }
-    button:hover {
-      background-color: #0056b3;
+    
+    #sendRecording:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
     }
+   
     #recordedAudio {
-      width: 80%;
+      width: 50%;
       margin-top: 20px;
+      margin: 5px;
     }
         
     
@@ -136,52 +172,66 @@
   
      <div class="right-container">
      
-    <?php include 'php/active/active_group.php';?>
+   
    
    </div>
-  
+  <!--
    <div class="left-container">
-     <?php include 'php/statistic/list_points_month.php'; ?>
-     
-  <?php include 'php/statistic/chart_day.php'; ?>
-   <br>
-   <?php include 'php/statistic/chart_yesterday.php'; ?>
-       
-       <br><br>
-       
-     <?php// include 'php/statistic/percent_master.php'; ?>
-     <br><br>
-     <?php// include 'php/statistic/list_points_general.php'; ?>
-   </div>
 
+   </div>
+-->
     
    
   
      
     
     <div class="middle-container">  
+      <div class=news>
       
-      
-      
-    <h1>Nagrywanie dźwięku z mikrofonu</h1>
-
+     
+    
+        <h1>Nagrywanie dźwięku z mikrofonu</h1>
+        
+ <div id="limitOfRecordings"></div>
+        <label>Utwór:</label>
+        <select id="title" name="title">
+            <option value="Nearer">Nearer my God</option>
+            <option value="Cant">Cant help</option>
+        </select>
+        
+    <br>
+        
     <button id="startRecording">Rozpocznij nagrywanie</button>
     <button id="stopRecording" disabled>Zatrzymaj nagrywanie</button>
     <button id="sendRecording" disabled>Wyślij nagranie</button>
     <audio id="recordedAudio" controls></audio>
 
-      
+      </div>
       
        <script>
+        
+
+   
+        
+         
         const startRecordingButton = document.getElementById('startRecording');
         const stopRecordingButton = document.getElementById('stopRecording');
          const sendRecordingButton = document.getElementById('sendRecording');
         const recordedAudio = document.getElementById('recordedAudio');
         let mediaRecorder;
         let audioChunks = [];
-
-        startRecordingButton.addEventListener('click', async () => {
+let limitOfRecordings =3;
+          
+         
+      
+  
+         
+         startRecordingButton.addEventListener('click', async () => {
             try {
+              if(limitOfRecordings>0){
+              audioChunks = []; // reset poprzedniego nagrania
+   
+              
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 mediaRecorder = new MediaRecorder(stream);
 
@@ -199,26 +249,55 @@
                 stopRecordingButton.disabled = false;
 
                 mediaRecorder.start();
+               limitOfRecordings--;
+              }
             } catch (error) {
                 console.error('Błąd dostępu do mikrofonu:', error);
             }
         });
-
+         
+          let limit = document.getElementById('limitOfRecordings');
+       
         stopRecordingButton.addEventListener('click', () => {
             mediaRecorder.stop();
             startRecordingButton.disabled = false;
             stopRecordingButton.disabled = true;
           sendRecordingButton.disabled = false;
+          limit.innerHTML = "Limit prób: " + limitOfRecordings;
         });
        
          
          
   sendRecordingButton.addEventListener('click', async () => {
+    var titleInput = document.getElementById('title');
+    var titleValue = titleInput.value;
+    
+     // Utworzenie obiektu Date, który reprezentuje aktualną datę
+        var currentDate = new Date();
+
+        // Pobranie miesiąca (wartości od 0 do 11, więc dodajemy 1)
+        var currentMonth = currentDate.getMonth() + 1;
+
+        // Pobranie roku
+        var currentYear = currentDate.getFullYear();
+
+        // Wyświetlenie miesiąca i roku
+       // var currentMonthYearElement = document.getElementById("currentMonthYear");
+       // currentMonthYearElement.textContent = "Miesiąc: " + currentMonth + ", Rok: " + currentYear;
+    
+    var recordingName ="<?php echo $instrument;?>" +"_"+ currentMonth + "_" + currentYear +"_"+ titleValue + ".wav";
+    alert(recordingName);
+    
+    
+    
+    
+    
+    
     try {
         const audioBlob = new Blob(audioChunks, { 'type': 'audio/wav' });
         const formData = new FormData();
-        formData.append('audio_data', audioBlob, 'recording.wav');
-
+        //formData.append('audio_data', audioBlob, 'recording.wav');
+formData.append('audio_data', audioBlob, recordingName);
         const response = await fetch('php/save_recording.php', {
             method: 'POST',
             body: formData
@@ -241,8 +320,25 @@
     </script>
    
       
+    
+     
+
       
+echo "<tr>";
+echo "<td><strong>Total</strong></td>";
+//echo "<td><strong>$total</strong></td>";
+      echo "<td></td>";
+echo "<td><strong>$p_violin1Total</strong>%</td>";
+echo "<td><strong>$p_violin2Total</strong>%</td>";
+echo "<td><strong>$p_violaTotal</strong>%</td>";
+echo "<td><strong>$p_celloTotal</strong>%</td>";
+echo "</tr>";
       
+ 
+           //echo '<div class="a">' . $line . '</div>';
+           
+           */
+?>
       
       
       
