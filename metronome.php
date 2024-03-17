@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Broken Cello</title>
    <link rel="stylesheet" href="css/styleapp.css?v=1.26">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
         
         #metronome {
@@ -14,29 +15,27 @@
             margin-top: 20px;
         }
 
-        .inputstart{
-            font-size: 16px;
+        .tempo-input{
+            font-size: 24px;
             padding: 8px 16px;
-          border-radius: 10px;
+          width: 70px;
         }
 
-        .buttonstart {
-            cursor: pointer;
+
+       .start-stop-metronome-button {
+           background-color: #008CBA;
          padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007bff;
+            font-size: 24px;
             color: #fff;
             border: none;
-            border-radius: 5px;
-            margin-left: 10px;
         }
+   .start-stop-metronome-button:hover {
+    background-color: #454545;
+}
    
     
         
-      button:hover {
-            background-color: #0056b3;
-        }
+    
         
     .buttontempo {
             font-size: 10px;
@@ -57,7 +56,30 @@
     
     
     
-
+ table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: grey;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
     
     
     
@@ -67,6 +89,7 @@
   <div class="menu">
     <div class="left-item">
         <a href="home.php" class="image-link"><img src="images/menu/home.png" alt=""></a>
+      
         
     </div>
     <div class="middle-item">
@@ -79,6 +102,7 @@
        
     </div>
     <div class="right-item">
+      <a href="#" id="messageMenu" class="image-link"><img src="images/menu/message.png" alt=""></a>
         <a href="#" class="image-link" id="menu-button"><img src="images/menu/user.png" alt=""></a>
       <div class="submenu" id="submenu">
             <a href="#">Ustawienia</a>
@@ -108,7 +132,7 @@
   
   
   
-     <div id="window" class="chat-container">
+  <div id="chatContainer" class="chat-container" style="display: none;">
     <div id="minimalization">&#x2014;</div>
     <div id="chat-box"></div>
       
@@ -129,14 +153,24 @@
     var minimalizationButton = document.getElementById('minimalization');
 
     // Pobranie zawartości okna
-    var windowContent = document.getElementById('window');
+    var windowContent = document.getElementById('chatContainer');
 
     // Dodanie obsługi zdarzenia kliknięcia na przycisk minimalizacji
     minimalizationButton.addEventListener('click', function() {
         // Minimalizacja okna
         windowContent.style.display = windowContent.style.display === 'none' ? 'block' : 'none';
-    });
+    })
+    
+   var messageButton = document.getElementById('messageMenu');
+    messageButton.addEventListener('click', function() {
+       
+    windowContent.style.display = windowContent.style.display === 'none' ? 'block' : 'none';
+    }) 
+    ;
 </script>
+  
+  
+    
   
   
   <div class="main-container">
@@ -153,19 +187,151 @@
     
     <div class="middle-container">  
       
-          
+          <div class="news">
     <div id="metronome">
-        <input type="number" id="tempoInput" class="inputstart" placeholder="Tempo (BPM)" value="120">
-      <button id="startStopButtonMetronome" class="buttonstart">Start</button><br><br>
+        <input type="number" id="tempoInput" class="tempo-input" placeholder="Tempo (BPM)" value="120">
+      <button id="startStopMetronomeButton" class="start-stop-metronome-button">Start</button><br><br>
+      
+    
+      
+      
+      
+      
+      
+      
         <button id="tempo60Button" class="buttontempo">60 BPM</button>
         <button id="tempo80Button" class="buttontempo">80 BPM</button>
         <button id="tempo100Button" class="buttontempo">100 BPM</button>
     </div>
-
+      </div>
       
     <script src="js/metronome.js"></script>
       
       
+      
+      
+        <table>
+   <!--
+          <caption></caption>
+    -->
+          <thead>
+        <tr>
+            <th>Tempo</th>
+            <th>BPM</th>
+            <th>Metronom</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Larghissimo</td>
+            <td>24 and under</td>
+          <td><button id="" class="">24 BPM</button></td>
+        </tr>
+        <tr>
+            <td>Adagissimo and Grave</td>
+            <td>24–40</td>
+            
+        </tr>
+        <tr>
+            <td>Largo</td>
+            <td>40–66</td>
+          
+        </tr>
+      <tr>
+            <td>Larghetto</td>
+            <td>44–66</td>
+          
+        </tr>
+      <tr>
+            <td>Adagio</td>
+            <td>44–66</td>
+          
+        </tr>
+       <tr>
+            <td>Adagietto</td>
+            <td>46–80</td>
+          
+        </tr>
+       <tr>
+            <td>Lento</td>
+            <td>52–108</td>
+          
+        </tr>
+      <tr>
+            <td>Andante</td>
+            <td>56–108</td>
+          
+        </tr>
+      <tr>
+            <td>Andantino</td>
+            <td>80–108</td>
+          
+        </tr>
+      <tr>
+            <td>Marcia moderato</td>
+            <td>66–80</td>
+          
+        </tr>
+      <tr>
+            <td>Andante moderato</td>
+            <td>80–108</td>
+          
+        </tr>
+      <tr>
+            <td>Moderato</td>
+            <td>108–120</td>
+          
+        </tr>
+      <tr>
+            <td>Allegretto</td>
+            <td>112–120</td>
+          
+        </tr>
+      <tr>
+            <td>Allegro moderato</td>
+            <td>116–120</td>
+          
+        </tr>
+     
+      <tr>
+            <td>Allegro</td>
+            <td>120–156</td>
+          
+        </tr>
+      <tr>
+            <td>Molto Allegro or Allegro vivace</td>
+            <td>124–156</td>
+          
+        </tr>
+      <tr>
+            <td>Vivace</td>
+            <td>156–176</td>
+          
+        </tr>
+      <tr>
+            <td>Vivacissimo and Allegrissimo</td>
+            <td>172–176</td>
+          
+        </tr>
+      <tr>
+            <td>Presto</td>
+            <td>168–200</td>
+          
+        </tr>
+      <tr>
+            <td>Prestissimo</td>
+            <td>200 and over</td>
+          
+        </tr>
+   
+    </tbody>
+</table>
+      
+          
+    
+      
+    
+
     </div>
   </div>
   
