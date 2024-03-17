@@ -1,11 +1,10 @@
-
         let timer;
         let tempo = 120; // Default tempo in BPM (beats per minute)
         let playing = false;
         let interval = 60000 / tempo; // Initial interval
 
         function playClick() {
-            const click = new Audio('admin/t.mp3'); // Provide your click sound file
+            const click = new Audio('audio/metronome/t.mp3');
             click.play();
         }
 
@@ -13,11 +12,11 @@
             if (!playing) {
                 playing = true;
                 startMetronome();
-                document.getElementById('startStopButtonMetronome').innerText = 'Stop';
+                document.getElementById('startStopMetronomeButton').innerText = 'Stop';
             } else {
                 playing = false;
                 clearInterval(timer);
-                document.getElementById('startStopButtonMetronome').innerText = 'Start';
+                document.getElementById('startStopMetronomeButton').innerText = 'Start';
             }
         }
 
@@ -35,7 +34,7 @@
             document.getElementById('tempoInput').value = tempo; // Update tempo input field
         }
 
-        document.getElementById('startStopButtonMetronome').addEventListener('click', startStop);
+        document.getElementById('startStopMetronomeButton').addEventListener('click', startStop);
         document.getElementById('tempoInput').addEventListener('change', function() {
             tempo = parseInt(this.value);
             interval = 60000 / tempo;
@@ -56,4 +55,10 @@
         document.getElementById('tempo100Button').addEventListener('click', function() {
             changeTempo(100);
         });
-   
+
+document.getElementById('tempo120Button').addEventListener('click', function() {
+            changeTempo(120);
+        });
+document.getElementById('tempo140Button').addEventListener('click', function() {
+            changeTempo(140);
+        });

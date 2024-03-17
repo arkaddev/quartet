@@ -9,49 +9,49 @@
    <link rel="stylesheet" href="css/styleapp.css?v=1.26">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-        
-        #metronome {
-            text-align: center;
-            margin-top: 20px;
-        }
+    #metronome {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-        .tempo-input{
-            font-size: 24px;
-            padding: 8px 16px;
-          width: 70px;
-        }
+    .tempo-input {
+      font-size: 24px;
+      padding: 8px 16px;
+      width: 70px;
+    }
 
-
-       .start-stop-metronome-button {
-           background-color: #008CBA;
-         padding: 10px 20px;
-            font-size: 24px;
-            color: #fff;
-            border: none;
-        }
-   .start-stop-metronome-button:hover {
-    background-color: #454545;
-}
+    .start-stop-metronome-button {
+      background-color: #008CBA;
+      padding: 10px 20px;
+      font-size: 24px;
+      color: #fff;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
    
-    
+    .start-stop-metronome-button:hover {
+      background-color: #454545;
+    }
         
-    
-        
-    .buttontempo {
-            font-size: 10px;
-            padding: 8px 16px;
-            margin: 0 10px;
+    .tempo-button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: grey;
+      color: white;
+      border: none;
       cursor: pointer;
-         padding: 10px 20px;
-           
-            cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
+      transition: background-color 0.3s ease;
+    }
    
+    .tempo-button:hover {
+      background-color: #454545;
+    }
+    
+    
+    
+    
+    
     
     
     
@@ -199,9 +199,11 @@
       
       
       
-        <button id="tempo60Button" class="buttontempo">60 BPM</button>
-        <button id="tempo80Button" class="buttontempo">80 BPM</button>
-        <button id="tempo100Button" class="buttontempo">100 BPM</button>
+        <button id="tempo60Button" class="tempo-button">60 BPM</button>
+        <button id="tempo80Button" class="tempo-button">80 BPM</button>
+        <button id="tempo100Button" class="tempo-button">100 BPM</button>
+      <button id="tempo120Button" class="tempo-button">120 BPM</button>
+        <button id="tempo140Button" class="tempo-button">140 BPM</button>
     </div>
       </div>
       
