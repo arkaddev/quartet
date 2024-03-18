@@ -33,22 +33,54 @@ echo "<table>";
 
 echo "<tr>";
 echo "<td>Skrzypce 1</td>";
-echo "<td><strong>$p_violin1Total</strong>%</td>";
+if ($p_violin1Total < 70) {
+    echo '<td><strong><span style="color:red;">' . $p_violin1Total . '%</span></strong></td>';
+}
+if ($p_violin1Total > 90) {
+    echo '<td><strong><span style="color:green;">' . $p_violin1Total . '%</span></strong></td>';
+}
+if ($p_violin1Total >= 70 && $p_violin1Total <=90) {
+    echo '<td><strong>' . $p_violin1Total . '%</strong></td>';
+}
 echo "</tr>";
 
 echo "<tr>";
 echo "<td>Skrzypce 2</td>";
-echo "<td><strong>$p_violin2Total</strong>%</td>";
+if ($p_violin2Total < 70) {
+    echo '<td><strong><span style="color:red;">' . $p_violin2Total . '%</span></strong></td>';
+}
+if ($p_violin2Total > 90) {
+    echo '<td><strong><span style="color:green;">' . $p_violin2Total . '%</span></strong></td>';
+}
+if ($p_violin2Total >= 70 && $p_violin2Total <=90) {
+    echo '<td><strong>' . $p_violin2Total . '%</strong></td>';
+}
 echo "</tr>";
 
 echo "<tr>";
 echo "<td>Altówka</td>";
-echo "<td><strong>$p_violaTotal</strong>%</td>";
+if ($p_violaTotal < 70) {
+    echo '<td><strong><span style="color:red;">' . $p_violaTotal . '%</span></strong></td>';
+}
+if ($p_violaTotal > 90) {
+    echo '<td><strong><span style="color:green;">' . $p_violaTotal . '%</span></strong></td>';
+}
+if ($p_violaTotal >= 70 && $p_violaTotal <=90) {
+    echo '<td><strong>' . $p_violaTotal . '%</strong></td>';
+}
 echo "</tr>";
 
 echo "<tr>";
 echo "<td>Wiolonczela</td>";
-echo "<td><strong>$p_celloTotal</strong>%</td>";
+if ($p_celloTotal < 70) {
+    echo '<td><strong><span style="color:red;">' . $p_celloTotal . '%</span></strong></td>';
+}
+if ($p_celloTotal > 90) {
+    echo '<td><strong><span style="color:green;">' . $p_celloTotal . '%</span></strong></td>';
+}
+if ($p_celloTotal >= 70 && $p_celloTotal <=90) {
+    echo '<td><strong>' . $p_celloTotal . '%</strong></td>';
+}
 echo "</tr>";
 
 echo "</table>";

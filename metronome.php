@@ -1,4 +1,4 @@
-<?php include 'php/session.php'; ?>
+<?php include 'php/session.php';?>
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -182,6 +182,20 @@
    </div>
   
    <div class="left-container">  
+     
+     
+     <h3>Dynamika</h3>
+     
+     <li><strong>fff</strong> (fortissimo possibile) - możliwie najgłośniej</li>
+     <li><strong>ff</strong> (fortissimo) - bardzo głośno</li>
+     <li><strong>f</strong> (forte) - głośno</li>
+     <li><strong>mf</strong> (mezzo forte) - dość głośno</li>
+     <li><strong>mp</strong> (mezzo piano) - dość cicho</li>
+     <li><strong>p</strong> (piano) - cicho</li>
+     <li><strong>pp</strong> (pianissimo) - bardzo cicho</li>
+     <li><strong>ppp</strong> (pianissimo possibile) - możliwie najciszej</li>
+     <li>(quasi) niente - (prawie) bezgłośnie</li>
+     
    </div>
 
     
@@ -227,7 +241,7 @@
         <tr>
             <td>Larghissimo</td>
             <td>24 and under</td>
-          <td><button id="" class="">24 BPM</button></td>
+          <td><button onclick="changeTempo('24')">24 BPM</button></td>
         </tr>
         <tr>
             <td>Adagissimo and Grave</td>
